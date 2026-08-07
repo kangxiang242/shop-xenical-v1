@@ -3,11 +3,6 @@
 @section('style')
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('static/less/evaluate.css') }}?ver={{ config('app.asset_version') }}"/>
-    @if(isset($css) && $css)
-    <style type="text/css">
-        {!! $css !!}
-    </style>
-    @endif
     <style>
         blockquote{
             border-left: 5px solid rgba(0,0,0,.05);
@@ -52,9 +47,7 @@
 
 @section('script')
     @parent
-    <script src="{{ asset('static/js/xie.js') }}?ver={{ config('app.asset_version') }}"></script>
     <script src="{{ asset('static/js/jquery.leoTextAnimate.js') }}?ver={{ config('app.asset_version') }}"></script>
-    @if(!(strpos(strtolower(request()->userAgent()),'google') !== false))
     <script>
 
         function BMR(sex,weight,height,age){
@@ -100,7 +93,7 @@
 
             if(!$.isNumeric(age)){
                 $("input[name='age']").focus();
-                promptError('計算失敗','請輸入正確的年齡');
+                promptError('計算失敗','请输入正确的年龄');
                 return false;
             }
 
@@ -112,7 +105,7 @@
 
             if(!$.isNumeric(height)){
                 $("input[name='height']").focus();
-                promptError('計算失敗','請輸入正確的身高');
+                promptError('計算失敗','请输入正确的身高');
                 return false;
             }
 
@@ -124,7 +117,7 @@
 
             if(!$.isNumeric(weight)){
                 $("input[name='weight']").focus();
-                promptError('計算失敗','請輸入正確的體重');
+                promptError('計算失敗','请输入正确的體重');
                 return false;
             }
             if($(this).attr('disabled')){
@@ -146,7 +139,6 @@
                     $('#ending').html(data);
                     closeLoadingActionBtn('.count-btn a');
                     leoTextAnimateRun();
-                    window.dispatchEvent(new Event('xo:calc_complete'));
                 },
                 error:function(){
                     closeLoadingActionBtn('.count-btn a');
@@ -169,7 +161,6 @@
 
 
     </script>
-    @endif
 @stop
 
 @section('breadcrumb')
@@ -190,66 +181,63 @@
 @section('content')
 
 
-    <section class="evaluate-container" data-track-section="calc" data-track-section-view data-track-section-label="瘦身計算機">
+    <section class="evaluate-container">
         <div class="evaluate-wrapper">
-
-            @if(!(strpos(strtolower(request()->userAgent()),'google') !== false))
-                <div class="evaluate-form">
-                    <div class="form-group">
-                        <p class="title">你的性別？</p>
-                        <div class="form-inline">
-                            <div class="radio-inline">
-                                <input type="radio" name="sex" value="2" checked id="sex1">
-                                <label for="sex1">女性</label>
-                            </div>
-                            <div class="radio-inline">
-                                <input type="radio" name="sex" value="1" id="sex2">
-                                <label for="sex2">男性</label>
-                            </div>
+            <div class="evaluate-form">
+                <div class="form-group">
+                    <p class="title">你的性别？</p>
+                    <div class="form-inline">
+                        <div class="radio-inline">
+                            <input type="radio" name="sex" value="2" checked id="sex1">
+                            <label for="sex1">女性</label>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <p class="title">你的年龄？</p>
-                        <input class="form-control" type="text" name="age" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <p class="title">你的身高（公分）？</p>
-                        <input class="form-control" type="text" name="height" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        <p class="title">你的體重（公斤）？</p>
-                        <input class="form-control" type="text" name="weight" placeholder="">
-                    </div>
-
-                    <div class="form-group">
-                        <p class="title">每週的運動強度？</p>
-                        <div class="radio-row">
-                            <input id="qd1" type="radio" name="activityLevel" value="1" checked>
-                            <label for="qd1">久坐/沒在運動</label>
+                        <div class="radio-inline">
+                            <input type="radio" name="sex" value="1" id="sex2">
+                            <label for="sex2">男性</label>
                         </div>
-                        <div class="radio-row">
-                            <input id="qd2" type="radio" name="activityLevel" value="2">
-                            <label for="qd2">每週低強度運動／一週運動 1～3 天</label>
-                        </div>
-                        <div class="radio-row">
-                            <input id="qd3" type="radio" name="activityLevel" value="3">
-                            <label for="qd3">每週中等強度運動／一週運動 3～5 天</label>
-                        </div>
-                        <div class="radio-row">
-                            <input id="qd4" type="radio" name="activityLevel" value="4">
-                            <label for="qd4">每週高強運動/一個星期運動 5 ~ 7 天</label>
-                        </div>
-                        <div class="radio-row">
-                            <input id="qd5" type="radio" name="activityLevel" value="5">
-                            <label for="qd5">每天運動訓練 2 次、勞力工作者</label>
-                        </div>
-                    </div>
-                    <div class="count-btn" data-track-calc-start>
-                        <a class="btn-ef1" href="javascript:;">開始計算</a>
                     </div>
                 </div>
-            @endif
+
+                <div class="form-group">
+                    <p class="title">你的年龄？</p>
+                    <input class="form-control" type="text" name="age" placeholder="">
+                </div>
+                <div class="form-group">
+                    <p class="title">你的身高（公分）？</p>
+                    <input class="form-control" type="text" name="height" placeholder="">
+                </div>
+                <div class="form-group">
+                    <p class="title">你的體重（公斤）？</p>
+                    <input class="form-control" type="text" name="weight" placeholder="">
+                </div>
+
+                <div class="form-group">
+                    <p class="title">每週的運動強度？</p>
+                    <div class="radio-row">
+                        <input id="qd1" type="radio" name="activityLevel" value="1" checked>
+                        <label for="qd1">久坐/沒在運動</label>
+                    </div>
+                    <div class="radio-row">
+                        <input id="qd2" type="radio" name="activityLevel" value="2">
+                        <label for="qd2">每週輕量運動/一個星期運動 1 ~ 3 天</label>
+                    </div>
+                    <div class="radio-row">
+                        <input id="qd3" type="radio" name="activityLevel" value="3">
+                        <label for="qd3">每週中量運動/一個星期運動 3 ~ 5 天</label>
+                    </div>
+                    <div class="radio-row">
+                        <input id="qd4" type="radio" name="activityLevel" value="4">
+                        <label for="qd4">每週高強運動/一個星期運動 5 ~ 7 天</label>
+                    </div>
+                    <div class="radio-row">
+                        <input id="qd5" type="radio" name="activityLevel" value="5">
+                        <label for="qd5">每天運動訓練 2 次、勞力工作者</label>
+                    </div>
+                </div>
+                <div class="count-btn">
+                    <a class="btn-ef1" href="javascript:;">開始計算</a>
+                </div>
+            </div>
 
 
             <div class="ending" id="ending">

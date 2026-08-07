@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-@php
-    $needsWow = request()->is('/') || request()->is('product');
-@endphp
 <html lang="zh-TW" style="font-size: 62.5%">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="content-language" content="zh-tw">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     @if(app('cache.config')->get('google_verify_type') == 1)
         {!! app('cache.config')->get('google_verify_code') !!}
@@ -35,43 +32,188 @@
         <meta name="description" content="{{ isset($layout['seo'])?$layout['seo']->description:"" }}"/>
     @endif
 
-    <link rel="alternate" hreflang="zh-TW" href="{{ config('app.url') }}/{{ trim(request()->path(),'/') }}" />
+
     <link rel="canonical" href="{{ config('app.url') }}/{{ trim(request()->path(),'/') }}">
 
     <link rel="shortcut icon" href="{{ asset_upload(app('cache.config')->get('favicon'),'/favicon.ico') }}">
     @section('style')
         <link rel="stylesheet" type="text/css" href="{{ asset('static/css/style.css') }}?ver={{ config('app.asset_version') }}"/>
         @if(!is_googlebot())
-        <link rel="stylesheet" href="{{ asset('static/font/iconfont.css') }}?ver={{ config('app.asset_version') }}">
+        <link rel="stylesheet" href="{{ asset('static/font_3122894_o33hqrxtwf/iconfont.css') }}?ver={{ config('app.asset_version') }}">
         @endif
         <link rel="stylesheet" href="{{ asset('static/mobile/less/global.css') }}?ver={{ config('app.asset_version') }}">
-        @if($needsWow)
-        <link rel="stylesheet" type="text/css" href="{{ asset('static/wow/animate.min.css') }}?ver={{ config('app.asset_version') }}"/>
-        @endif
+        <link rel="stylesheet" href="{{ asset('static/swiper4/swiper.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('static/less/customer-service.css') }}?ver={{ config('app.asset_version') }}">
+        <style>
+
+            .countdown .bloc-time {
+                float: left;
+                text-align: center;
+                display: flex;
+                align-self: center;
+            }
+            .countdown .bloc-time:after {
+                content: "时";
+                padding: 0 0.4rem;
+                font-weight: 700;
+                font-size: 1.4rem;
+
+                display: flex;
+                align-self: center;
+                color: #fff;
+            }
+
+
+            .countdown .bloc-time.hours:after {
+                content: "时";
+
+            }
+            .countdown .bloc-time.min:after {
+                content: "分";
+
+            }
+            .countdown .bloc-time.sec:after {
+                content: "秒";
+
+            }
+
+            .countdown .bloc-time:last-child {
+                margin-right: 0;
+            }
+
+            .countdown .count-title {
+                display: block;
+                margin-bottom: 15px;
+                font: normal 1.24em "Lato";
+                color: #1a1a1a;
+                text-transform: uppercase;
+            }
+            .countdown .figure {
+                position: relative;
+                text-align: center;
+                float: left;
+                height: 3rem;
+                width: 2.4rem;
+                margin-right: 0.4rem;
+                background-color: #fff;
+                border-radius: 6px;
+                overflow: hidden;
+/*                -moz-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
+                -webkit-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
+                box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);*/
+            }
+            .countdown .figure:last-child {
+                margin-right: 0;
+            }
+            .countdown .figure > span {
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+                /*  font: normal 5.94em/107px "Lato";*/
+                font-family: "Lato";
+                font-size: 2.4rem;
+                font-weight: 700;
+                line-height: 2.8rem;
+                color: #de4848;
+            }
+            .countdown .figure .top:after, .countdown .figure .bottom-back:after {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            .countdown .figure .top {
+                z-index: 3;
+                background-color: #f7f7f7;
+                transform-origin: 50% 100%;
+                -webkit-transform-origin: 50% 100%;
+                -moz-border-radius-topleft: 0.1rem;
+                -webkit-border-top-left-radius: 0.1rem;
+                border-top-left-radius: 0.1rem;
+                -moz-border-radius-topright: 0.1rem;
+                -webkit-border-top-right-radius: 0.1rem;
+                border-top-right-radius: 0.1rem;
+                -moz-transform: perspective(20rem);
+                -ms-transform: perspective(20rem);
+                -webkit-transform: perspective(20rem);
+                transform: perspective(20rem);
+            }
+            .countdown .figure .bottom {
+                z-index: 1;
+            }
+            .countdown .figure .bottom:before {
+                content: "";
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 50%;
+                background-color: rgba(0, 0, 0, 0.02);
+            }
+            .countdown .figure .bottom-back {
+                z-index: 2;
+                top: 0;
+                height: 50%;
+                overflow: hidden;
+                background-color: #f7f7f7;
+                -moz-border-radius-topleft: 1rem;
+                -webkit-border-top-left-radius: 1rem;
+                border-top-left-radius: 1rem;
+                -moz-border-radius-topright: 1rem;
+                -webkit-border-top-right-radius: 1rem;
+                border-top-right-radius: 1rem;
+            }
+            .countdown .figure .bottom-back span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+            .countdown .figure .top, .countdown .figure .top-back {
+                height: 50%;
+                overflow: hidden;
+                -moz-backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+            .countdown .figure .top-back {
+                z-index: 4;
+                bottom: 0;
+                background-color: #fff;
+                -webkit-transform-origin: 50% 0;
+                transform-origin: 50% 0;
+                -moz-transform: perspective(20rem) rotateX(180deg);
+                -ms-transform: perspective(20rem) rotateX(180deg);
+                -webkit-transform: perspective(20rem) rotateX(180deg);
+                transform: perspective(20rem) rotateX(180deg);
+                -moz-border-radius-bottomleft: 1rem;
+                -webkit-border-bottom-left-radius: 1rem;
+                border-bottom-left-radius: 1rem;
+                -moz-border-radius-bottomright: 1rem;
+                -webkit-border-bottom-right-radius: 1rem;
+                border-bottom-right-radius: 1rem;
+            }
+            .countdown .figure .top-back span {
+                position: absolute;
+                top: -100%;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+        </style>
     @show
 
-    @php
-        $trackingWebHost = parse_url(config('app.url'), PHP_URL_HOST);
-        $trackingMobileHost = parse_url(config('app.m_url') ?: config('app.url'), PHP_URL_HOST);
-    @endphp
-    <script src="{{ asset('static/js/jquery.min.js') }}?ver={{ config('app.asset_version') }}"></script>
-    <script>
-        window.__TRACKING_CONFIG__ = {
-            webHost: @json($trackingWebHost),
-            mobileHost: @json($trackingMobileHost),
-            endpoint: '/observer/store',
-            enabled: @json(!app()->environment('local')),
-            debug: @json(app()->environment('local')),
-            assetVersion: @json(config('app.asset_version')),
-            pluginBase: @json(asset('static/js/tracker-plugins') . '/')
-        };
-    </script>
-    @include('components.tracking-page')
-    <script src="{{ asset('static/js/tracker.js') }}?ver={{ config('app.asset_version') }}" defer></script>
-    <script src="{{ asset('static/js/observer.js') }}?ver={{ config('app.asset_version') }}" defer></script>
-    @if($needsWow)
-    <script src="{{ asset('static/wow/wow.min.js') }}?ver={{ config('app.asset_version') }}"></script>
-    @endif
+    <script src="{{ asset('static/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('static/jquery_lazyload/jquery.lazyload.min.js') }}"></script>
+    <script src="{{ asset('static/swiper4/swiper.min.js') }}"></script>
+    <script src="{{ asset('static/js/sweetalert2.js') }}"></script>
     <script>
         var clientWidth = document.documentElement.clientWidth;
         ;(function (doc, win, undefined) {
@@ -94,18 +236,7 @@
         }
         document.documentElement.style.fontSize = clientWidth / 37.5 + 'px';
     </script>
-    <script>
-        document.addEventListener('dblclick', function (e) {
-            e.preventDefault();
-        }, { passive: false });
-    </script>
-    @if($needsWow)
-    <script>
-        new WOW({
-            offset:50,
-        }).init();
-    </script>
-    @endif
+
     <script>
         var is_ajax_get_cart = 0;
         var flash_data = '{!! session()->get('flash') !!}';
@@ -128,106 +259,25 @@
 
 @section('header')
     <header>
-        <div class="logo-wrap">
-            <a href="{{ url('/') }}">
-                <img class="logo-img" src="{{ asset('static/img/m.logo2.webp') }}?ver={{ config('app.asset_version') }}" alt="logo" decoding="async">
+        <div class="top-sec">
+            <a class="logo" href="{{ url('/') }}">
+                <img src="{{ asset('static/img/logo.png') }}" alt="logo">
             </a>
+
         </div>
-        <div class="right-wrap">
-       {{--     <div class="online"><a href="{{ url('product') }}">線上訂購</a></div>--}}
-            <div class="menu"><a class="show-menu" href="javascript:;" data-track-section="nav" data-track-name="nav.menu.open" data-observer="側欄-打開"><i class="iconfont">&#xe62c;</i></a></div>
-        </div>
+
     </header>
-    <div class="online-buy">
-        <a href="{{ url('product') }}" data-track-section="header" data-track-name="header.order_btn" data-observer="頂部-線上訂購"><i class="iconfont">&#xe811;</i>線上訂購</a>
-    </div>
 @show
 
-@section('menu')
-    <section class="menu-section">
-        <div class="menu-head">
-            <a href="javascript:;" class="close-menu" data-track-section="nav" data-track-name="nav.menu.close" data-observer="側欄-關閉"><i class="iconfont">&#xe62f;</i></a>
-        </div>
-        <ul class="menu-list">
-            <li class="menu-item">
-                <ul class="menu-dropdown">
-                    <li>
-                        <a href="{{ url('/') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.home" data-observer="側欄-首頁">首頁 <i class="iconfont">&#xe775;</i></a>
-                    </li>
 
-                </ul>
-            </li>
-            <li class="menu-item">
-                <a href="javascript:;">Sale</a>
-                <ul class="menu-dropdown">
-                    <li>
-                        <a href="{{ url('product') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.product" data-observer="側欄-線上訂購">羅氏鮮網路訂購<i class="iconfont">&#xe775;</i></a>
-                    </li>
-                    <li>
-                        <a href="{{ url('guide') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.guide" data-observer="側欄-購前須知">購前須知<i class="iconfont">&#xe775;</i></a>
-                    </li>
-                    <li>
-                        <a href="{{ url('payment-delivery') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.payment" data-observer="側欄-付款與配送">付款與配送<i class="iconfont">&#xe775;</i></a>
-                    </li>
-                    <li>
-                        <a href="{{ url('after-sales') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.after_sales" data-observer="側欄-售後服務">售後服務<i class="iconfont">&#xe775;</i></a>
-                    </li>
-                </ul>
-            </li>
-            <li class="menu-item">
-                <a href="javascript:;">About</a>
-                <ul class="menu-dropdown">
-                    <li>
-                        <a href="{{ url('about') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.about" data-observer="側欄-認識羅氏鮮">認識羅氏鮮<i class="iconfont">&#xe775;</i></a>
-                    </li>
-                </ul>
-            </li>
 
-            <li class="menu-item">
-                <a href="javascript:;">Q&A</a>
-                <ul class="menu-dropdown">
-                    <li>
-                        <a href="{{ url('faq') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.faq" data-observer="側欄-營養師解答">營養師解答<i class="iconfont">&#xe775;</i></a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="menu-item">
-                <a href="javascript:;">Articles</a>
-                <ul class="menu-dropdown">
-                    <li>
-                        <a href="{{ url('news') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.news" data-observer="側欄-瘦身專欄">瘦身專欄<i class="iconfont">&#xe775;</i></a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="menu-item">
-                <a href="javascript:;">Service</a>
-                <ul class="menu-dropdown">
-                    <li>
-                        <a href="{{ url('check') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.check" data-observer="側欄-訂單追蹤">訂單追蹤<i class="iconfont">&#xe775;</i></a>
-                    </li>
-                    <li>
-                        <a href="{{ url('message') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.message" data-observer="側欄-取得協助">取得協助<i class="iconfont">&#xe775;</i></a>
-                    </li>
-                    <li>
-                        <a href="{{ url('compute') }}" data-track-section="nav.drawer" data-track-name="nav.drawer.compute" data-observer="側欄-瘦身計算機">瘦身計算機<i class="iconfont">&#xe775;</i></a>
-                    </li>
-                </ul>
-            </li>
-
-        </ul>
-    </section>
-@show
-
-<main>
 @section('banner')
     @if($layout['banners'] && !$layout['banners']->isEmpty())
         <section class="banner-section">
             <div class="banner-main">
                 @foreach($layout['banners'] as $key=>$item)
                     @if($item->m_img)
-                        <a href="{{ $item->href?url($item->href):"javascript:;" }}"><img src="{{ asset_upload($item->m_img) }}" alt="{{ $item->alt }}" decoding="async"></a>
+                        <a href="{{ $item->href?url($item->href):"javascript:;" }}"><img src="{{ asset_upload($item->m_img) }}" alt="{{ $item->alt }}"></a>
                     @endif
                 @endforeach
             </div>
@@ -244,110 +294,137 @@
 
 
 
+
+
 <footer>
-    {{--<div class="head">
-        <a href="{{ url('/') }}">
-            <div class="logo-wrap">
-                <div class="place">
-                    <div class="compose">
-                        <img class="fra-1" src="{{ asset('static/img/lg/fraw-1.png') }}" alt="logo" loading="lazy" decoding="async">
-                        <img class="fra-2" src="{{ asset('static/img/lg/fraw-2.png') }}" alt="logo" loading="lazy" decoding="async">
-                        <img class="fra-3"  src="{{ asset('static/img/lg/fraw-3.png') }}" alt="logo" loading="lazy" decoding="async">
-                    </div>
-                    <div class="intact">
-                        <img class="xenical-logo" src="{{ asset('static/img/lg/xenical-2.png') }}" alt="xenical" loading="lazy" decoding="async">
-
-                    </div>
+    <div class="ft-main">
+        <div class="ft-left">
+            <!-- <div class="logo-box">
+                <div class="row">
+                    <img width="180" src="{{ asset('static/img/logo.png') }}?ver={{ config('app.asset_version') }}" alt="footer-logo">
 
                 </div>
-                <p class="text white">全球領先健康減肥藥</p>
-            </div>
-        </a>
-    </div>--}}
+            </div> -->
+            <div class="conceal clearfix">
 
-    <div class="main">
-        <div class="menu-column">
-
-            <div class="menu">
-                <p class="title">Sale</p>
-                <ul class="nav">
-                    <li><a href="{{ url('product') }}" data-track-section="footer.sale" data-track-name="footer.sale.order" data-observer="底部-線上訂購">羅氏鮮網路訂購</a></li>
-                    <li><a href="{{ url('guide') }}" data-track-section="footer.sale" data-track-name="footer.sale.guide" data-observer="底部-購前須知">購前須知</a></li>
-                    <li><a href="{{ url('payment-delivery') }}" data-track-section="footer.sale" data-track-name="footer.sale.payment" data-observer="底部-付款與配送">付款與配送</a></li>
-                    <li><a href="{{ url('after-sales') }}" data-track-section="footer.sale" data-track-name="footer.sale.after_sales" data-observer="底部-售後服務">售後服務</a></li>
-                </ul>
-            </div>
-            <div class="menu">
-                <p class="title">About</p>
-                <ul class="nav">
-                    <li><a href="{{ url('about') }}" data-track-section="footer.about" data-track-name="footer.about.link" data-observer="底部-認識羅氏鮮">認識羅氏鮮</a></li>
-                </ul>
-            </div>
-            <div class="menu">
-                <p class="title">Q&A</p>
-                <ul class="nav">
-                    <li><a href="{{ url('faq') }}" data-track-section="footer.qa" data-track-name="footer.qa.faq" data-observer="底部-營養師解答">營養師解答</a></li>
-                </ul>
-            </div>
-            <div class="menu">
-                <p class="title">Articles</p>
-                <ul class="nav">
-                    <li><a href="{{ url('news') }}" data-track-section="footer.articles" data-track-name="footer.articles.news" data-observer="底部-瘦身專欄">瘦身專欄</a></li>
-                </ul>
-            </div>
-            <div class="menu">
-                <p class="title">Service</p>
-                <ul class="nav">
-                    <li><a href="{{ url('check') }}" data-track-section="footer.service" data-track-name="footer.service.check" data-observer="底部-訂單追蹤">訂單追蹤</a></li>
-                    <li><a href="{{ url('message') }}" data-track-section="footer.service" data-track-name="footer.service.message" data-observer="底部-取得協助">取得協助</a></li>
-                    <li><a href="{{ url('compute') }}" data-track-section="footer.service" data-track-name="footer.service.compute" data-observer="底部-瘦身計算機">瘦身計算機</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="contact-column">
-            <div class="topic">
-                <div class="item">
-                    <a href="{{ url('product') }}" data-track-section="footer.contact" data-track-name="footer.contact.order" data-observer="底部-線上訂購">
-                        <div class="col">
-                            <div class="icon"><i class="iconfont">&#xe64f;</i></div>
-                            <div class="text">
-                                <p class="en">Buy Online</p>
-                                <p class="cn"><span>網路訂購</span></p>
-                            </div>
-                            <div class="arrow-right"><i class="iconfont">&#xe613;</i></div>
-                        </div>
-                    </a>
+                <div class="co-item">
+                    <div class="icon-box"><i class="iconfont" style="font-size: 2.8rem">&#xe6fc;</i></div>
+                    <p>歐洲進口</p>
                 </div>
-            </div>
-            <div class="address">
-                {!! str_replace(PHP_EOL,'<br/>',app('cache.config')->get('foot_text')) !!}
-            </div>
-        </div>
+                <div class="co-item">
+                    <div class="icon-box"><i class="iconfont" style="font-size: 2.4rem">&#x100d2;</i></div>
+                    <p>原廠正品</p>
+                </div>
+                <div class="co-item">
+                    <div class="icon-box"><i class="iconfont" style="font-size: 2.4rem">&#xe609;</i></div>
+                    <p>現貨供應</p>
+                </div>
+                <div class="co-item">
+                    <div class="icon-box"><i class="iconfont" style="font-size: 2.8rem">&#xe714;</i></div>
+                    <p>當天發貨</p>
+                </div>
 
-        <div class="description">
-            <div class="partner">
-                <div class="icon"><img  style="width: 12.6rem" src="{{ asset('static/img/fdausa.webp') }}" alt="fda-usa" loading="lazy" decoding="async"></div>
-                <div class="icon"><img style="width: 15.2rem" src="{{ asset('static/img/ema.webp') }}" alt="ema" loading="lazy" decoding="async"></div>
-                <!-- <div class="icon"><img  style="width: 14.5rem" src="{{ asset('static/img/fdataiwan.png') }}" alt="台湾fda" loading="lazy" decoding="async"></div> -->
-                <div class="icon"><img  style="width: 5rem" src="{{ asset('static/img/ROCHE.webp') }}" alt="ROCHE" loading="lazy" decoding="async"></div>
-                <div class="icon"><img  style="width: 12rem" src="{{ asset('static/img/CHEPLA.webp') }}" alt="CHEPLA" loading="lazy" decoding="async"></div>
-                <!-- <div class="icon"><img  style="width: 12.2rem" src="{{ asset('static/img/heimao.png') }}" alt="黑猫宅急便" loading="lazy" decoding="async"></div>
-                <div class="icon"><img  style="width: 2.6rem" src="{{ asset('static/img/7-11.png') }}" alt="7-11" loading="lazy" decoding="async"></div> -->
-                <div class="icon"><img style="width: 5.2rem" src="{{ asset('static/img/ssl.webp') }}" alt="ssl" loading="lazy" decoding="async"></div>
+                <div class="co-item">
+                    <div class="icon-box"><i class="iconfont" style="font-size: 2.4rem">&#xe6d0;</i></div>
+                    <p>隱密發貨</p>
+                </div>
+                <div class="co-item">
+                    <div class="icon-box"><i class="iconfont" style="font-size: 2.4rem">&#xe6ce;</i></div>
+                    <p>買家好評</p>
+                </div>
+                <div class="co-item">
+                    <div class="icon-box"><i class="iconfont" style="font-size: 2.2rem">&#xe6f5;</i></div>
+                    <p>免費退換</p>
+                </div>
+                <div class="co-item">
+                    <div class="icon-box"><i class="iconfont" style="font-size: 2.2rem">&#xe6f8;</i></div>
+                    <p>安全結帳</p>
+                </div>
+
             </div>
-            <p class="copyright">{!! app('cache.config')->get('copyright') !!}</p>
         </div>
+    </div>
+    <div class="partner">
+        <div class="icon"><img  style="width: 12.6rem" src="{{ asset('static/img/fdausa.png') }}" alt="fda-usa"></div>
+        <div class="icon"><img style="width: 15.2rem" src="{{ asset('static/img/ema.png') }}" alt="ema"></div>
+        <!-- <div class="icon"><img  style="width: 14.5rem" src="{{ asset('static/img/fdataiwan.png') }}" alt="台湾fda"></div> -->
+        <div class="icon"><img  style="width: 10rem" src="{{ asset('static/img/CHEPLA.png') }}" alt="CHEPLA"></div>
+        <!-- <div class="icon"><img  style="width: 9.2rem; padding-top: 1rem;" src="{{ asset('static/img/7-11.png') }}" alt="7-11"></div>
+        <div class="icon"><img  style="width: 10.2rem; padding-top: 1rem;" src="{{ asset('static/img/heimao.png') }}" alt="黑猫宅急便"></div> -->
+    </div>
+
+    
+    <div class="f-nav">
+        <a href="{{ url('message') }}">首頁</a>
+        <a href="{{ url('message') }}">減肥藥購買</a>
+        <a href="{{ url('message') }}">用法介紹</a>
+        <a href="{{ url('message') }}">常見Q&A</a>
+        </br>
+        <a href="{{ url('message') }}">瘦身部落格</a>
+        <a href="{{ url('message') }}">聯絡客服</a>
+        <a href="{{ url('check') }}">訂單查詢</a>
+    </div>
+    <p class="copyright">{!! app('cache.config')->get('copyright') !!}</p>
+    <div class="partner">
+        <div class="icon"><img style="width: 5.2rem" src="{{ asset('static/img/ssl.png') }}" alt="ssl"></div>
+        <div class="icon"><img style="width: 6.2rem" src="{{ asset('static/img/trusted.png') }}" alt="ssl"></div>
     </div>
 </footer>
 
 
-</main>
+@section('footer-menu')
+    <section class="footer-menu">
+        <ul class="menu">
+            <li>
+                <a class="box" href="{{ url('/') }}">
+                    <p class="ico"><i class="iconfont" style="font-size: 2.4rem">&#xe692;</i></p>
+                    <p class="text">首頁</p>
+                </a>
+            </li>
+            <li>
+                <a class="box" href="{{ url('product') }}">
+                    <p class="ico"><i class="iconfont">&#xe719;</i></p>
+                    <p class="text">減肥藥購買</p>
+                </a>
+            </li>
+            <li>
+                <a class="box" href="{{ url('about') }}">
+                    <p class="ico"><i class="iconfont" style="font-size: 2.4rem">&#xe8ca;</i></p>
+                    <p class="text">用法介紹</p>
+                </a>
+            </li>
+            <li>
+                <a class="box" href="{{ url('faq') }}">
+                    <p class="ico"><i class="iconfont">&#xeb90;</i></p>
+                    <p class="text">常見Q&A</p>
+                </a>
+            </li>
+            <li>
+                <a class="box" href="{{ url('news') }}">
+                    <p class="ico"><i class="iconfont" style="font-size: 2.7rem">&#xe602;</i></p>
+                    <p class="text">瘦身部落格</p>
+                </a>
+            </li>
+        </ul>
+    </section>
+@show
+@section('customer-service')
+    @if(request()->is('/'))
+        <x-customer-service></x-customer-service>
+    @endif
+@show
 </body>
 
 
 @section('script')
+    <script src="{{ asset('static/js/customer-service.js') }}?ver={{ config('app.asset_version') }}"></script>
+    <script src="{{ asset('static/js/observer.js') }}?ver={{ config('app.asset_version') }}"></script>
+    <script src="{{ asset('static/js/jquery.form.js') }}"></script>
+    <script src="{{ asset('static/js/api.js') }}?ver={{ config('app.asset_version') }}"></script>
+    <script src="{{ asset('static/jcountdown/TweenMax.min.js') }}"></script>
+
     {!! app('cache.config')->get('google_ga') !!}
+
     <script>
         $('.show-menu').click(function () {
             $('.menu-section').addClass('-show');
@@ -361,14 +438,160 @@
         });
 
         $('body').on('click','.shade',function(){
-            if (window.XenicalTracker) {
-                XenicalTracker.track('click', 'nav.menu.close_shade', { section: 'nav', label: '側欄-遮罩關閉', explain: '側欄-遮罩關閉' });
-            }
             $('.menu-section').removeClass('-show');
             $('.shade').remove();
             $('body').removeClass('overflow-hidden')
         });
     </script>
 
+    <script type="text/javascript">
+        // Create Countdown
+        var Countdown = {
+
+            // Backbone-like structure
+            $el: $('.countdown'),
+
+            // Params
+            countdown_interval: null,
+            total_seconds     : 0,
+
+            // Initialize the countdown
+            init: function() {
+
+                // DOM
+                this.$ = {
+                    hours  : this.$el.find('.bloc-time.hours .figure'),
+                    minutes: this.$el.find('.bloc-time.min .figure'),
+                    seconds: this.$el.find('.bloc-time.sec .figure')
+                };
+
+                // Init countdown values
+                this.values = {
+                    hours  : this.$.hours.parent().attr('data-init-value'),
+                    minutes: this.$.minutes.parent().attr('data-init-value'),
+                    seconds: this.$.seconds.parent().attr('data-init-value'),
+                };
+
+                // Initialize total seconds
+                this.total_seconds = this.values.hours * 60 * 60 + (this.values.minutes * 60) + this.values.seconds;
+
+                // Animate countdown to the end
+                this.count();
+            },
+
+            count: function() {
+
+                var that    = this,
+                    $hour_1 = this.$.hours.eq(0),
+                    $hour_2 = this.$.hours.eq(1),
+                    $min_1  = this.$.minutes.eq(0),
+                    $min_2  = this.$.minutes.eq(1),
+                    $sec_1  = this.$.seconds.eq(0),
+                    $sec_2  = this.$.seconds.eq(1);
+
+                this.countdown_interval = setInterval(function() {
+
+                    if(that.total_seconds > 0) {
+
+                        --that.values.seconds;
+
+                        if(that.values.minutes >= 0 && that.values.seconds < 0) {
+
+                            that.values.seconds = 59;
+                            --that.values.minutes;
+                        }
+
+                        if(that.values.hours >= 0 && that.values.minutes < 0) {
+
+                            that.values.minutes = 59;
+                            --that.values.hours;
+                        }
+
+                        // Update DOM values
+                        // Hours
+                        that.checkHour(that.values.hours, $hour_1, $hour_2);
+
+                        // Minutes
+                        that.checkHour(that.values.minutes, $min_1, $min_2);
+
+                        // Seconds
+                        that.checkHour(that.values.seconds, $sec_1, $sec_2);
+
+                        --that.total_seconds;
+                    }
+                    else {
+                        clearInterval(that.countdown_interval);
+                    }
+                }, 1000);
+            },
+
+            animateFigure: function($el, value) {
+
+                var that         = this,
+                    $top         = $el.find('.top'),
+                    $bottom      = $el.find('.bottom'),
+                    $back_top    = $el.find('.top-back'),
+                    $back_bottom = $el.find('.bottom-back');
+
+                // Before we begin, change the back value
+                $back_top.find('span').html(value);
+
+                // Also change the back bottom value
+                $back_bottom.find('span').html(value);
+
+                // Then animate
+                TweenMax.to($top, 0.8, {
+                    rotationX           : '-180deg',
+                    transformPerspective: 300,
+                    ease                : Quart.easeOut,
+                    onComplete          : function() {
+
+                        $top.html(value);
+
+                        $bottom.html(value);
+
+                        TweenMax.set($top, { rotationX: 0 });
+                    }
+                });
+
+                TweenMax.to($back_top, 0.8, {
+                    rotationX           : 0,
+                    transformPerspective: 300,
+                    ease                : Quart.easeOut,
+                    clearProps          : 'all'
+                });
+            },
+
+            checkHour: function(value, $el_1, $el_2) {
+
+                var val_1       = value.toString().charAt(0),
+                    val_2       = value.toString().charAt(1),
+                    fig_1_value = $el_1.find('.top').html(),
+                    fig_2_value = $el_2.find('.top').html();
+
+                if(value >= 10) {
+
+                    // Animate only if the figure has changed
+                    if(fig_1_value !== val_1) this.animateFigure($el_1, val_1);
+                    if(fig_2_value !== val_2) this.animateFigure($el_2, val_2);
+                }
+                else {
+
+                    // If we are under 10, replace first figure with 0
+                    if(fig_1_value !== '0') this.animateFigure($el_1, 0);
+                    if(fig_2_value !== val_1) this.animateFigure($el_2, val_1);
+                }
+            }
+        };
+
+        // Let's go !
+        Countdown.init();
+    </script>
+
 @show
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        $("img.lazy").lazyload({effect: "fadeIn"});
+    });
+</script>
 </html>

@@ -58,7 +58,7 @@
 </head>
 <body>
 <div class="flex-center position-ref full-height">
-    <div class="message" style="padding: 10px;"><h1>{{ \App\Services\ConfigService::get('close_site_tips','暫時無法訪問~') }}</h1></div>
+    <div class="message" style="padding: 10px;"><h1>網站升級中...</h1></div>
 </div>
 </body>
 </html>

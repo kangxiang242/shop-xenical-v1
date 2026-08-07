@@ -3,18 +3,16 @@
 namespace App\Http\Controllers\Web;
 
 use App\Exceptions\MsgException;
-use App\Http\JsonResponse;
 use App\Http\Requests\MessageRequest;
 use App\Models\Faq;
-use App\Repositories\FaqRepository;
 use App\Repositories\MessageRepository;
 use Illuminate\Database\QueryException;
 
 class MessageController extends BaseController
 {
     public function index(){
-        $faqs = app(FaqRepository::class)->getByUri('message');
-        return template('message', ['faqs' => $faqs]);
+        $faqs = Faq::orderBy('sort','desc')->limit(3)->get();
+        return template('message',compact('faqs'));
     }
 
     /**
@@ -29,16 +27,14 @@ class MessageController extends BaseController
                 throw new MsgException("留言次數過多，請稍後再試");
             }
             $messageRepository->store($request->all());
-            return JsonResponse::make()->title('留言成功')->message('我們會儘快回復您')->send();
+            return $this->success('留言成功','我們會儘快聯係您','/message');
         }catch (MsgException $exception){
-            return JsonResponse::make()->statusCode(400)->status(false)->message($exception->getMessage())->send();
-
+            return $this->error('留言失敗',$exception->getMessage(),'/message');
         }catch (QueryException $exception){
-            return JsonResponse::make()->statusCode(400)->status(false)->message('系統異常錯誤【500001】')->send();
 
+            return $this->error('留言失敗','系統出現未知錯誤','/message');
         }catch (\Exception $exception){
-            return JsonResponse::make()->statusCode(400)->status(false)->message('系統異常錯誤【500002】')->send();
-
+            return $this->error('留言失敗','系統出現未知錯誤','/message');
         }
 
     }

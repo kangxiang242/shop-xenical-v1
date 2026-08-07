@@ -11,55 +11,25 @@
 
 @if($news->seo_description)
     @section('description', $news->seo_description)
-@section('og_title', $news->seo_title ?? $news->title)
-@section('og_description', $news->seo_description ?? strip_tags(mb_substr($news->content ?? '', 0, 200)))
-@if($news->img)
-    @section('og_image')
-    <meta property="og:image" content="{{ asset('uploads/'.$news->img) }}" />
-    @endsection
-@endif
-@section('og_type', 'article')
-@section('jsonld')
-<script type="application/ld+json">
-{
-    "@@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "{{ $news->seo_title ?? $news->title }}",
-    "description": "{{ $news->seo_description ?? '' }}",
-    "image": "{{ $news->img ? asset('uploads/'.$news->img) : '' }}",
-    "datePublished": "{{ $news->release_at ?? $news->created_at }}",
-    "dateModified": "{{ $news->updated_at }}",
-    "author": {
-        "@type": "Organization",
-        "name": "{{ config('app.name') }}"
-    }
-}
-</script>
-@endsection
 @endif
 @section('style')
     @parent
-    <base href="{{ $articleAssetBase ?? '/' }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('static/less/news-desc.css') }}?ver={{ config('app.asset_version') }}"/>
-    @if($news->custom_css)
-    <style>{!! $news->custom_css !!}</style>
-    @endif
+
 @stop
 
 @section('script')
     @parent
     <script>
-        
+        document.domain = "{{ getMainDomain() }}";
         function setIframeHeight(iframe) {
             if (iframe) {
                 var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
                 if (iframeWin.document.body) {
                     iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-                }
-            }
+                }}
         };
-        
-        window.onload = function() {
+        window.onload = function () {
             setIframeHeight(document.getElementById('external-frame'));
         };
     </script>
@@ -67,61 +37,59 @@
 @section('breadcrumb')
     <ul class="breadcrumb">
         <li><a href="{{ url('/') }}">首頁</a></li>
-        <li><a href="{{ url('news') }}">瘦身專欄</a></li>
+        <li><a href="{{ url('news') }}">瘦身部落格</a></li>
         <li class="active">{{ $news->title }}</li>
     </ul>
 @stop
 
 @section('content')
-@push('body-attr')
-@endpush
+    <div class="container clearfix">
 
-    <div class="news-show-wrap">
-        <div class="middle">
-            <div class="line"></div>
-            <div class="time">
-                <p class="p1">發佈日期</p>
-                <p class="p2">{{ $news->release_at->format('d') }}.{{ $news->release_at->format('m') }}.{{ $news->release_at->format('Y') }}</p>
-            </div>
-            <div class="fluid">
-                <div class="news-title">{{ $news->title }}</div>
-                <div class="news-content" data-track-scroll-target>
-                    @if($news->html_file)
-                        @php
-                            // 移除 .zip 后缀以获取正确的目录名
-                            $dirName = preg_replace('/\.zip$/', '', $news->html_file);
-                            $htmlPath = 'uploads/' . $dirName . '/index.html';
-                        @endphp
-                        <iframe id="external-frame" width="100%" style="min-height: 100vh" src="{{ asset($htmlPath) }}" frameborder="0" scrolling="no" onload="setIframeHeight(this)"></iframe>
-                    @else
-                        {!! preg_replace(['/<script\b[^>]*>.*?<\/script>/is', '/<title\b[^>]*>.*?<\/title>/is', '/<meta\b[^>]*\/?>/i', '/<base\b[^>]*\/?>/i', '/<link\b[^>]*\/?>/i', '/<iframe\b[^>]*>.*?<\/iframe>/is', '/<\/?(?:html|head|body)\b[^>]*>/i'], '', $news->content) !!}
-                    @endif
+
+
+            <div class="news" style="margin-top: 90px;    padding-bottom: 50px;">
+                <div class="news-main clearfix">
+                    <h1 class="title">{{ $news->title }}</h1>
+                    <div class="division">
+                        {{--<span>總字數{{ $content_len = mb_strlen(strip_tags($new->content)) }}字  閱讀時間約{{ \App\Services\ArticleService::readingMinuteCount($content_len) }}</span>
+                        --}}
+                        <span class="time" style="float: unset">{{ $news->release_at->format('Y-m-d') }}</span>
+                    </div>
+                    <div class="new-content">
+                        @if($news->html_file)
+                            <iframe  id="external-frame" width="100%" style="min-height: 100vh" src="{{ asset_upload(str_replace('.zip','',$news->html_file).'/index.html') }}"  frameborder="0" scrolling="no" onload="setIframeHeight(this)"></iframe>
+                        @else
+                            {!! $news->content !!}
+                        @endif
+
+                    </div>
+                    <div class="relevant clearfix">
+
+                        <div class="prev">
+                            <p class="pte">上一篇</p>
+                            @if($prev)
+                                <div class="relevant-news clearfix">
+                                   {{-- <a class="img-hover" href="{{ url('news/'.$prev->id) }}"><img src="{{ asset('uploads/'.$prev->img) }}" alt="{{ $prev->title }}"></a>--}}
+                                    <p class="title-hover" style="    width: 300px;margin: 0"><a href="{{ url('news/'.$prev->id) }}">{{ $prev->title }}</a></p>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="next">
+                            <p class="pte" style="text-align: right;">下一篇</p>
+                            @if($next)
+                                <div class="relevant-news clearfix">
+                                {{--    <a class="img-hover"  href="{{ url('news/'.$next->id) }}"><img src="{{ asset('uploads/'.$next->img) }}" alt="{{ $next->title }}"></a>--}}
+                                    <p class="title-hover" style="text-align: right;    width: 300px;margin: 0"><a href="{{ url('news/'.$next->id) }}">{{ $next->title }}</a></p>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
+
+
+
             </div>
-        </div>
 
-        <div class="article-footer">
-
-
-            <nav class="relatednav">
-                @if($prev)
-                <a class="relatednav-prev" data-track-section="news.detail" data-track-name="news.detail.prev" data-observer="上一篇" href="{{ url('news/'.$prev->id) }}">
-                    <span class="relatednav-arrow"></span>
-                    <span class="relatednav-title  h4 h4-mb fw-bolder">{{ $prev->title }}</span>
-                </a>
-                @endif
-
-                <a class="relatednav-back  fw-bold" href="{{ url('news') }}">
-                    <i class="ico-dots"><b></b></i>返回
-                </a>
-                @if($next)
-                <a class="relatednav-next" data-track-section="news.detail" data-track-name="news.detail.next" data-observer="下一篇" href="{{ url('news/'.$next->id) }}">
-                    <span class="relatednav-arrow"></span>
-                    <span class="relatednav-title  h4 h4-mb fw-bolder">{{ $next->title }}</span>
-                </a>
-                @endif
-            </nav>
-        </div>
     </div>
 
 @endsection

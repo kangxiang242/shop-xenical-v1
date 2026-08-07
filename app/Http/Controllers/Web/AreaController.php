@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Web;
 use App\Handlers\DeviceTypeHandlers;
 use App\Http\Controllers\Controller;
 use App\Models\Area;
-use App\Services\VehicleService;
 use Illuminate\Http\Request;
 use Rizhou\Control\Supply\StoreSynchronizing;
 
@@ -121,15 +120,12 @@ class AreaController extends Controller
             }
 
         }
-
-        $city_name = $this->request_city_name;
-        $county_name = $this->request_county_name;
-        /*if (DeviceTypeHandlers::isMobile()){
-            return view('mobile.widgets.shopping-store-item',compact('data','city_name','county_name'))->render();
+        if (DeviceTypeHandlers::isMobile()){
+            return view('mobile.widgets.shopping-store-item',compact('data'))->render();
         }else{
+            return view('web.widgets.shopping-store-item',compact('data'))->render();
+        }
 
-        }*/
-        return view('web.widgets.shopping-store-item',compact('data','city_name','county_name'))->render();
 
     }
 

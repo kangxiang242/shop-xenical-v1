@@ -28,9 +28,7 @@
         @if($goods)
         <div class="wares">
             <div class="goods">
-                <div class="img-wrap">
-                    <img src="{{ asset_upload($goods->img) }}" alt="{{ $goods->name }}" loading="lazy" decoding="async">
-                </div>
+                <div class="img-wrap"></div>
                 <div class="info">
                     <p class="goods-title">{{ $goods->name }}</p>
                     @if($goods->label)
@@ -55,7 +53,7 @@
                         @endif
                     </div>
                 </div>
-                <a class="go-btn" data-track-calc-recommend data-track-section="calc.result" data-track-name="calc.recommend.checkout" data-observer="計算器推薦訂購" href="{{ url('checkout/'.$goods->id) }}">立即訂購</a>
+                <a class="go-btn" href="{{ url('checkout/'.$goods->id) }}">立即購買</a>
             </div>
         </div>
         @endif

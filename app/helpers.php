@@ -291,3 +291,8 @@ if (! function_exists('release_asset')) {
         return "{$prefix}/{$path}{$sep}{$cacheBuster}";
     }
 }
+
+function getMainDomain(){
+    $parse_url = parse_url(config('app.url'));
+    return array_get($parse_url,'host');
+}

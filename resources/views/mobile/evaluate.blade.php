@@ -3,19 +3,14 @@
 @section('style')
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('static/mobile/less/evaluate.css') }}?ver={{ config('app.asset_version') }}"/>
-    @if(isset($css) && $css)
-    <style type="text/css">
-        {!! $css !!}
-    </style>
-    @endif
+
 @stop
 
 @section('script')
     @parent
-    <script src="{{ asset('static/js/sweetalert2.js') }}?ver={{ config('app.asset_version') }}"></script>
-    <script src="{{ asset('static/js/xie.js') }}?ver={{ config('app.asset_version') }}"></script>
     <script src="{{ asset('static/js/jquery.leoTextAnimate.js') }}?ver={{ config('app.asset_version') }}"></script>
-    @if(!(strpos(strtolower(request()->userAgent()),'google') !== false))
+    <script src="{{ asset('static/js/relx.js') }}?ver={{ config('app.asset_version') }}"></script>
+
     <script>
 
         function BMR(sex,weight,height,age){
@@ -77,7 +72,7 @@
                 Swal.fire({
                     icon:'error',
                     iconColor:'#fff',
-                    text: "請輸入正確的年齡",
+                    text: "请输入正确的年龄",
                     color:'#fff',
                     background:'rgba(0,0,0,0.7)',
                     width:'auto',
@@ -109,7 +104,7 @@
                 Swal.fire({
                     icon:'error',
                     iconColor:'#fff',
-                    text: "請輸入正確的身高",
+                    text: "请输入正确的身高",
                     color:'#fff',
                     background:'rgba(0,0,0,0.7)',
                     width:'auto',
@@ -142,7 +137,7 @@
                 Swal.fire({
                     icon:'error',
                     iconColor:'#fff',
-                    text: "請輸入正確的體重",
+                    text: "请输入正确的體重",
                     color:'#fff',
                     background:'rgba(0,0,0,0.7)',
                     width:'auto',
@@ -166,13 +161,12 @@
             $.ajax({
                 type: "POST",
                 url: "{{ url('compute') }}",
-                data: {sex:sex,age:age,height,weight,activityLevel:activityLevel,bmr:bmr, tdee:tdee,bmi:bmi,_token:"{{ csrf_token() }}"},
+                data: {activityLevel:activityLevel,bmr:bmr, tdee:tdee,bmi:bmi,_token:"{{ csrf_token() }}"},
                 dataType: "html",
                 success: function(data){
                     $('#ending').html(data);
                     closeLoadingActionBtn('.count-btn a');
                     leoTextAnimateRun();
-                    window.dispatchEvent(new Event('xo:calc_complete'));
                 },
                 error:function(){
                     closeLoadingActionBtn('.count-btn a');
@@ -206,7 +200,6 @@
 
 
     </script>
-    @endif
 @stop
 
 @section('breadcrumb')
@@ -226,12 +219,12 @@
 @section('content')
 
 
-    <section class="evaluate-container" data-track-section="calc" data-track-section-view data-track-section-label="瘦身計算機">
+    <section class="evaluate-container">
         <div class="evaluate-wrapper">
-            @if(!(strpos(strtolower(request()->userAgent()),'google') !== false))
+
             <div class="evaluate-form">
                 <div class="form-group">
-                    <p class="title">你的性別？</p>
+                    <p class="title">你的性别？</p>
                     <div class="form-inline">
                         <div class="radio-inline">
                             <input type="radio" name="sex" value="2" checked id="sex1">
@@ -265,11 +258,11 @@
                     </div>
                     <div class="radio-row">
                         <input id="qd2" type="radio" name="activityLevel" value="2">
-                        <label for="qd2">每週低強度運動／一週運動 1～3 天</label>
+                        <label for="qd2">每週輕量運動/一個星期運動 1 ~ 3 天</label>
                     </div>
                     <div class="radio-row">
                         <input id="qd3" type="radio" name="activityLevel" value="3">
-                        <label for="qd3">每週中等強度運動／一週運動 3～5 天</label>
+                        <label for="qd3">每週中量運動/一個星期運動 3 ~ 5 天</label>
                     </div>
                     <div class="radio-row">
                         <input id="qd4" type="radio" name="activityLevel" value="4">
@@ -280,11 +273,11 @@
                         <label for="qd5">每天運動訓練 2 次、勞力工作者</label>
                     </div>
                 </div>
-                <div class="count-btn" data-track-calc-start>
+                <div class="count-btn">
                     <a href="javascript:;">開始計算</a>
                 </div>
             </div>
-            @endif
+
 
             <div class="ending" id="ending">
 

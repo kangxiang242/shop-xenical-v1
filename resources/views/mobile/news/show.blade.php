@@ -14,28 +14,23 @@
 @endif
 @section('style')
     @parent
-    <base href="{{ $articleAssetBase ?? '/' }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('static/mobile/less/news-desc.css') }}?ver={{ config('app.asset_version') }}"/>
-    @if($news->custom_css)
-    <style>{!! $news->custom_css !!}</style>
-    @endif
+
+
 @stop
 
 @section('script')
     @parent
     <script>
-        
-        
+        document.domain = "{{ getMainDomain() }}";
         function setIframeHeight(iframe) {
             if (iframe) {
                 var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
                 if (iframeWin.document.body) {
                     iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-                }
-            }
+                }}
         };
-        
-        window.onload = function() {
+        window.onload = function () {
             setIframeHeight(document.getElementById('external-frame'));
         };
     </script>
@@ -43,34 +38,32 @@
 @section('breadcrumb')
     <ul class="breadcrumb">
         <li><a href="{{ url('/') }}">首頁</a></li>
-        <li><a href="{{ url('news') }}">瘦身專欄</a></li>
-        <li class="active">{{ $news->title }}</li>
+        <li><a href="{{ url('news') }}">瘦身部落格</a></li>
+        <li class="active">{{ \Illuminate\Support\Str::limit($news->title,18) }}</li>
     </ul>
 @stop
 
 @section('content')
-@push('body-attr')
-@endpush
+
 
     <div class="news-show-wrap">
         <div class="middle">
-            <div class="line"></div>
+{{--            <div class="line"></div>
             <div class="time">
                 <p class="p1">發佈日期</p>
                 <p class="p2">{{ $news->release_at->format('d') }}.{{ $news->release_at->format('m') }}.{{ $news->release_at->format('Y') }}</p>
-            </div>
+            </div>--}}
             <div class="fluid">
-                <h1 class="news-title">{{ $news->title }}</h1>
-                <div class="news-content" data-track-scroll-target>
+                <div style="padding: 0 1.5rem">
+                    <div class="news-title">{{ $news->title }}</div>
+                    <p class="date">{{ $news->created_at->format('Y-m-d') }}</p>
+                    <div class="line"></div>
+                </div>
+                <div class="news-content">
                     @if($news->html_file)
-                        @php
-                            // 移除 .zip 后缀以获取正确的目录名
-                            $dirName = preg_replace('/\.zip$/', '', $news->html_file);
-                            $htmlPath = 'uploads/' . $dirName . '/index.html';
-                        @endphp
-                        <iframe id="external-frame" width="100%" style="min-height: 100vh" src="{{ asset($htmlPath) }}" frameborder="0" scrolling="no" onload="setIframeHeight(this)"></iframe>
+                        <iframe  id="external-frame" width="100%" style="min-height: 100vh" src="{{ asset_upload(str_replace('.zip','',$news->html_file).'/index.html') }}"  frameborder="0" scrolling="no" onload="setIframeHeight(this)"></iframe>
                     @else
-                        {!! preg_replace(['/<script\b[^>]*>.*?<\/script>/is', '/<title\b[^>]*>.*?<\/title>/is', '/<meta\b[^>]*\/?>/i', '/<base\b[^>]*\/?>/i', '/<link\b[^>]*\/?>/i', '/<iframe\b[^>]*>.*?<\/iframe>/is', '/<\/?(?:html|head|body)\b[^>]*>/i'], '', $news->content) !!}
+                        {!! $news->content !!}
                     @endif
                 </div>
             </div>
@@ -81,7 +74,7 @@
 
             <nav class="relatednav">
                 @if($prev)
-                <a class="relatednav-prev" data-track-section="news.detail" data-track-name="news.detail.prev" data-observer="上一篇" href="{{ url('news/'.$prev->id) }}">
+                <a class="relatednav-prev" href="{{ url('news/'.$prev->id) }}">
                     <span class="relatednav-arrow"></span>
                     <span class="relatednav-title  h4 h4-mb fw-bolder">{{ $prev->title }}</span>
                 </a>
@@ -91,7 +84,7 @@
                     <i class="ico-dots"><b></b></i>返回
                 </a>--}}
                 @if($next)
-                <a class="relatednav-next" data-track-section="news.detail" data-track-name="news.detail.next" data-observer="下一篇" href="{{ url('news/'.$next->id) }}">
+                <a class="relatednav-next" href="{{ url('news/'.$next->id) }}">
                     <span class="relatednav-arrow"></span>
                     <span class="relatednav-title  h4 h4-mb fw-bolder">{{ $next->title }}</span>
                 </a>

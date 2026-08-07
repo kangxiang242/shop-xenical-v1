@@ -30,20 +30,20 @@
 @section('breadcrumb')
     <ul class="breadcrumb">
         <li><a href="{{ url('/') }}">首頁</a></li>
-        <li class="active">營養師解答</li>
+        <li class="active">常見Q&A</li>
     </ul>
 @stop
 
 @section('content')
-    <section class="fqa" data-track-section="faq" data-track-section-view data-track-section-label="營養師解答">
+    <section class="fqa">
         <div class="wrapper" style="">
             <div class="modal">
-                <h1 class="title">營養師解答</h1>
+                <h1 class="title">常見Q&A</h1>
             </div>
             <div class="fqa-body">
                 <div class="question">
                     @foreach($faq as $item)
-                    <div class="item question-show" data-faq-id="{{ $loop->iteration }}">
+                    <div class="item question-show">
                         <p class="q-title">Q：{{ $item->questions }}</p>
                         <p class="q-desc">{{ $item->answers }}</p>
                         <i class="q-icon iconfont">&#xe775;</i>

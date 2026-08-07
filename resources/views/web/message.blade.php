@@ -8,8 +8,7 @@
 
 @section('script')
     @parent
-    <script src="{{ asset('static/js/xie.js') }}?ver={{ config('app.asset_version') }}"></script>
-    <script src="{{ asset('static/js/api.js') }}?ver={{ config('app.asset_version') }}"></script>
+    <script src="{{ asset('static/js/api.js') }}"></script>
     <script>
 
         setInterval(function(){
@@ -21,7 +20,7 @@
 
         },1000);
         function messageVerify(){
-            var name = $("input[name='name']").val();
+            var name = $("input[name='name").val();
             var phone = $("input[name='phone']").val();
             var email = $("input[name='email']").val();
             var content = $("textarea[name='content']").val();
@@ -46,64 +45,33 @@
             return true;
         }
     </script>
+
     <script>
-        bgHeight()
-        function bgHeight(){
-            $('.container-bg').css('height',$(window).height()-80);
-
-        }
-        window.onresize = function(){
-            bgHeight()
-        }
-
-
-        $(window).scroll(function() {
-            bgEffect()
+        $('.question-show').click(function(){
+            var is_show = $(this).attr('data-show');
+            var height = $(this).find('.q-desc').height()+10+$(this).find('.q-title').height()
+            if(!is_show){
+                $(this).css('height',height);
+                $(this).attr('data-show',1);
+                $(this).find('.q-icon').html('&#xeca2;');
+            }else{
+                $(this).css('height',$(this).find('.q-title').height());
+                $(this).removeAttr('data-show');
+                $(this).find('.q-icon').html('&#xe775;');
+            }
 
         });
-
-        function bgEffect(){
-            let top = document.scrollingElement.scrollTop; //触发滚动条，记录数值
-            let banner_height = $('.container-bg').height()-60;
-            let opacity = 1-top/banner_height;
-            $('.container-bg').css('opacity',opacity);
-            if(opacity<=0.6){
-                $('.page-title').css('color','rgba(0,0,0,'+top/banner_height+')');
-            }else{
-                $('.page-title').css('color','#fff');
-            }
-
-            if(($(window).scrollTop() + $(window).height()).toFixed(0) == $(document).height()){
-                $('.container-bg').css('opacity',0);
-            }
-
-
-        }
-
-        $('.fqa li').each(function(){
-            var height = $(this).find('.answers').innerHeight();
-            $(this).css('--_height',height+'px');
-
-        });
-        $('.fqa li').click(function(){
-            if($(this).hasClass('show')){
-                $(this).removeClass('show');
-            }else{
-                $(this).addClass('show');
-            }
-        })
     </script>
-
 @stop
 
 
 @section('content')
 
-<section class="message-container" data-track-section="message" data-track-section-view data-track-section-label="取得協助">
-    <div class="container-bg" style="background-image: url('{{ asset_upload(app('cache.config')->get('page_message_back_img_pc')) }}')">
+<section class="message-container">
+    {{--<div class="container-bg" style="background-image: url('{{ asset_upload(app('cache.config')->get('page_message_back_img_pc')) }}')">
         <p class="bg-text">{!! app('cache.config')->get('page_message_title') !!}</p>
         <p class="beat"><i class="iconfont">&#xe784;</i></p>
-    </div>
+    </div>--}}
     <div class="page-main">
         <h1 class="page-title">取得協助</h1>
     </div>
@@ -116,14 +84,15 @@
                 </p>
             </div>
             <div class="body">
-                <ul class="fqa">
+                <div class="question">
                     @foreach($faqs as $item)
-                        <li>
-                            <p class="questions"><a href="javascript:;">Q：{{ $item->questions }}</a></p>
-                            <p class="answers">{{ $item->answers }}</p>
-                        </li>
+                    <div class="item question-show">
+                        <p class="q-title">Q：{{ $item->questions }}</p>
+                        <p class="q-desc">{{ $item->answers }}</p>
+                        <i class="q-icon iconfont">&#xe775;</i>
+                    </div>
                     @endforeach
-                </ul>
+                </div>
             </div>
         </div>
         <div class="right-side">
@@ -143,21 +112,21 @@
                         </div>
                         <div class="form-group">
                             <label>聯絡電話：</label>
-                            <input class="form-control" type="tel" name="phone" placeholder="請輸入聯絡你的電話號碼" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                            <input class="form-control" type="text" name="phone" placeholder="請輸入聯絡你的電話號碼">
                         </div>
                         <div class="form-group">
-                            <label>電子信箱：</label>
-                            <input class="form-control" type="text" name="email" placeholder="請輸入聯絡你的電子信箱">
+                            <label>電子郵箱：</label>
+                            <input class="form-control" type="text" name="email" placeholder="請輸入聯絡你的電子郵箱">
                         </div>
                         <div class="form-group">
                             <label>協助類型：</label>
                             <select class="form-control" name="type">
                                 <option value="1">療程咨詢</option>
                                 <option value="2">退換貨</option>
-                                <option value="3">修改訂單資訊</option>
+                                <option value="3">修改訂單信息</option>
                                 <option value="4">修改/新增訂單備注</option>
                                 <option value="5">意見或建議</option>
-                                <option value="0" selected>其他</option>
+                                <option value="0" selected>其它</option>
                             </select>
                         </div>
 
@@ -166,7 +135,7 @@
                             <textarea class="form-control form-textarea" name="content" id="" cols="30" rows="10"></textarea>
                         </div>
                         <div class="form-group">
-                            <button class="form-btn" type="submit" data-track-section="message" data-track-name="message.submit" data-observer="留言提交">確認送出</button>
+                            <button class="form-btn">確認送出</button>
                         </div>
                     </div>
                 </form>

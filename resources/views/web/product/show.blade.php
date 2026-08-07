@@ -1,475 +1,988 @@
 @extends('web.layout')
+@php
+    $comment_labels = $comment_labels->chunk(ceil(count($comment_labels)/3))
+@endphp
 @section('style')
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('static/less/goods.css') }}?ver={{ config('app.asset_version') }}"/>
-
+    <style>
+        header .tips{
+            display: none;
+        }
+        .countdown .bloc-time:after{
+            color: #000!important;
+            font-weight: 500!important;
+        }
+        .red-pan{
+            color: #d72525;
+            letter-spacing: 0;
+        }
+    </style>
 
 @stop
 
 @section('script')
     @parent
     <script>
-        var _0xf5c2fc=(776869^776870)+(134623^134622);const salesSwiper=document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("\u0073\u0061\u006C\u0065\u0073\u0053\u0077\u0069\u0070\u0065\u0072");_0xf5c2fc=(286273^286279)+(667660^667652);const height=salesSwiper['\u0063\u0068\u0069\u006C\u0064\u0072\u0065\u006E'][552857^552857]['\u006F\u0066\u0066\u0073\u0065\u0074\u0048\u0065\u0069\u0067\u0068\u0074'];var _0x6a953f=(734124^734125)+(799889^799893);let isAnimating=false;_0x6a953f=721810^721819;var _0xc71bff=(797458^797460)+(944557^944553);let counter=791031^791031;_0xc71bff="kmhakc".split("").reverse().join("");var _0x57bad=(138054^138053)+(568551^568545);const interval=276879^274999;_0x57bad='\u0064\u0061\u006E\u006B\u0062\u0065';function getRandomDelay(){return Math['\u0066\u006C\u006F\u006F\u0072'](Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*((932869^946725)-(414572^423036)+(634712^634713)))+(118106^125514);}function generateRandomSalesNumber(){return Math['\u0066\u006C\u006F\u006F\u0072'](Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*((450338^449733)-(160189^160217)+(397317^397316)))+(223309^223273);}function updateRandomNumber(){var _0x2af=(553831^553831)+(117377^117379);const _0x62g=Math['\u0066\u006C\u006F\u006F\u0072'](Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*((545774^545206)-(197221^197621)+(731549^731548)))+(388717^389117);_0x2af=(312825^312826)+(216156^216152);document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("rebmuNmodnar".split("").reverse().join(""))['\u0069\u006E\u006E\u0065\u0072\u0054\u0065\u0078\u0074']=_0x62g;}function updateNextSalesNumber(_0xcb5fb){const _0xccd90b=salesSwiper['\u0063\u0068\u0069\u006C\u0064\u0072\u0065\u006E'][617118^617119];_0xcb5fb=691799^691794;if(_0xccd90b){const _0x392db=_0xccd90b['\u0071\u0075\u0065\u0072\u0079\u0053\u0065\u006C\u0065\u0063\u0074\u006F\u0072']("\u0023\u0073\u0061\u006C\u0065\u0073\u004E\u0075\u006D\u0062\u0065\u0072");if(_0x392db){_0x392db['\u0069\u006E\u006E\u0065\u0072\u0054\u0065\u0078\u0074']=generateRandomSalesNumber();}}}function startSwiper(){setInterval(()=>{if(isAnimating)return;isAnimating=!![];let _0x3e481a;const _0x7d524d=counter%(276148^276150)===(345397^345397)?getRandomDelay():interval;_0x3e481a=(232623^232622)+(813358^813358);setTimeout(()=>{updateNextSalesNumber();updateRandomNumber();salesSwiper['\u0073\u0074\u0079\u006C\u0065']['\u0074\u0072\u0061\u006E\u0073\u0069\u0074\u0069\u006F\u006E']="\u0074\u0072\u0061\u006E\u0073\u0066\u006F\u0072\u006D\u0020\u0031\u0073\u0020\u0063\u0075\u0062\u0069\u0063\u002D\u0062\u0065\u007A\u0069\u0065\u0072\u0028\u0030\u002E\u0035\u002C\u0020\u0030\u002C\u0020\u0030\u002C\u0020\u0031\u0029";salesSwiper['\u0073\u0074\u0079\u006C\u0065']['\u0074\u0072\u0061\u006E\u0073\u0066\u006F\u0072\u006D']=`translateY(-${height}px)`;setTimeout(()=>{salesSwiper['\u0073\u0074\u0079\u006C\u0065']['\u0074\u0072\u0061\u006E\u0073\u0069\u0074\u0069\u006F\u006E']="enon".split("").reverse().join("");salesSwiper['\u0061\u0070\u0070\u0065\u006E\u0064\u0043\u0068\u0069\u006C\u0064'](salesSwiper['\u0063\u0068\u0069\u006C\u0064\u0072\u0065\u006E'][676885^676885]);salesSwiper['\u0073\u0074\u0079\u006C\u0065']['\u0074\u0072\u0061\u006E\u0073\u0066\u006F\u0072\u006D']=`translateY(0)`;setTimeout(()=>{salesSwiper['\u0073\u0074\u0079\u006C\u0065']['\u0074\u0072\u0061\u006E\u0073\u0069\u0074\u0069\u006F\u006E']=")1 ,0 ,0 ,5.0(reizeb-cibuc s1 mrofsnart".split("").reverse().join("");isAnimating=false;},850445^850495);},601523^601691);},_0x7d524d);counter++;},interval);}startSwiper();updateRandomNumber();var randomInterval=Math['\u0066\u006C\u006F\u006F\u0072'](Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*((141859^141868)-(463973^463983)+(507705^507704)))+(728872^728866);setInterval(updateRandomNumber,randomInterval*(402570^403298));
+        $('.thumbnail .item').click(function(){
+            var src = $(this).find('img').attr('src');
+            $('.cover-wrap').find('img').attr('src',src);
+            $(this).addClass('active').siblings().removeClass('active');
+        });
+    </script>
+    <script type="text/javascript">
+        // Create Countdown
+        var Countdown = {
+
+            // Backbone-like structure
+            $el: $('.goods-countdown'),
+
+            // Params
+            countdown_interval: null,
+            total_seconds     : 0,
+
+            // Initialize the countdown
+            init: function() {
+
+                // DOM
+                this.$ = {
+                    hours  : this.$el.find('.bloc-time.hours .figure'),
+                    minutes: this.$el.find('.bloc-time.min .figure'),
+                    seconds: this.$el.find('.bloc-time.sec .figure')
+                };
+
+                // Init countdown values
+                this.values = {
+                    hours  : this.$.hours.parent().attr('data-init-value'),
+                    minutes: this.$.minutes.parent().attr('data-init-value'),
+                    seconds: this.$.seconds.parent().attr('data-init-value'),
+                };
+
+                // Initialize total seconds
+                this.total_seconds = this.values.hours * 60 * 60 + (this.values.minutes * 60) + this.values.seconds;
+
+                // Animate countdown to the end
+                this.count();
+            },
+
+            count: function() {
+
+                var that    = this,
+                    $hour_1 = this.$.hours.eq(0),
+                    $hour_2 = this.$.hours.eq(1),
+                    $min_1  = this.$.minutes.eq(0),
+                    $min_2  = this.$.minutes.eq(1),
+                    $sec_1  = this.$.seconds.eq(0),
+                    $sec_2  = this.$.seconds.eq(1);
+
+                this.countdown_interval = setInterval(function() {
+
+                    if(that.total_seconds > 0) {
+
+                        --that.values.seconds;
+
+                        if(that.values.minutes >= 0 && that.values.seconds < 0) {
+
+                            that.values.seconds = 59;
+                            --that.values.minutes;
+                        }
+
+                        if(that.values.hours >= 0 && that.values.minutes < 0) {
+
+                            that.values.minutes = 59;
+                            --that.values.hours;
+                        }
+
+                        // Update DOM values
+                        // Hours
+                        that.checkHour(that.values.hours, $hour_1, $hour_2);
+
+                        // Minutes
+                        that.checkHour(that.values.minutes, $min_1, $min_2);
+
+                        // Seconds
+                        that.checkHour(that.values.seconds, $sec_1, $sec_2);
+
+                        --that.total_seconds;
+                    }
+                    else {
+                        clearInterval(that.countdown_interval);
+                    }
+                }, 1000);
+            },
+
+            animateFigure: function($el, value) {
+
+                var that         = this,
+                    $top         = $el.find('.top'),
+                    $bottom      = $el.find('.bottom'),
+                    $back_top    = $el.find('.top-back'),
+                    $back_bottom = $el.find('.bottom-back');
+
+                // Before we begin, change the back value
+                $back_top.find('span').html(value);
+
+                // Also change the back bottom value
+                $back_bottom.find('span').html(value);
+
+                // Then animate
+                TweenMax.to($top, 0.8, {
+                    rotationX           : '-180deg',
+                    transformPerspective: 300,
+                    ease                : Quart.easeOut,
+                    onComplete          : function() {
+
+                        $top.html(value);
+
+                        $bottom.html(value);
+
+                        TweenMax.set($top, { rotationX: 0 });
+                    }
+                });
+
+                TweenMax.to($back_top, 0.8, {
+                    rotationX           : 0,
+                    transformPerspective: 300,
+                    ease                : Quart.easeOut,
+                    clearProps          : 'all'
+                });
+            },
+
+            checkHour: function(value, $el_1, $el_2) {
+
+                var val_1       = value.toString().charAt(0),
+                    val_2       = value.toString().charAt(1),
+                    fig_1_value = $el_1.find('.top').html(),
+                    fig_2_value = $el_2.find('.top').html();
+
+                if(value >= 10) {
+
+                    // Animate only if the figure has changed
+                    if(fig_1_value !== val_1) this.animateFigure($el_1, val_1);
+                    if(fig_2_value !== val_2) this.animateFigure($el_2, val_2);
+                }
+                else {
+
+                    // If we are under 10, replace first figure with 0
+                    if(fig_1_value !== '0') this.animateFigure($el_1, 0);
+                    if(fig_2_value !== val_1) this.animateFigure($el_2, val_1);
+                }
+            }
+        };
+
+        // Let's go !
+        Countdown.init();
+    </script>
+
+
+
+
+
+    <script>
+        function makeOrderLogs(){
+            var order_log_time = parseInt(localStorage.getItem("order_log_time"))+10;
+            var current_time = Date.parse(new Date())/1000;
+
+
+            var swiper_html = '';
+            if(order_log_time>current_time){
+
+                swiper_html += '<div class="swiper-slide"><p class="ol"><span class="nick">'+localStorage.getItem("order_log_nickname")+'</span><span class="time">剛剛</span></p></div>';
+            }
+            for(var i=0;i<10;i++){
+                var str = "買家09****"+getRandomNum()+"已下單";
+                var time = "剛剛";
+                //order_logs.push({'nickname':str,'time':time});
+
+                swiper_html += '<div class="swiper-slide"><p class="ol"><span class="nick">'+str+'</span><span class="time">'+time+'</span></p></div>';
+            }
+            $('#order-logs-swiper').find('.swiper-wrapper').html(swiper_html);
+
+
+        }
+        makeOrderLogs();
+        function getRandomNum(){
+            var randomNum = Math.random()
+
+            var checkCode = randomNum*9000
+            checkCode +=1000;
+            return parseInt(checkCode)
+        }
+
+        function getRandomInt(min,max){
+            return Math.floor(Math.random()*(max-min+1))+min;
+        }
+
+        var is_run = false;
+        setInterval(function(){
+            var time = getRandomInt(8,25)*1000;
+
+
+            if(!is_run){
+                is_run = true;
+
+                setTimeout(function(){
+                    localStorage.removeItem("order_log_time");
+                    $('#order-logs-next').click();
+                    is_run=false;
+
+                },time)
+            }
+
+
+        },1000)
+
+
+        var current_order_buy_num = parseInt(localStorage.getItem("order_buy_num"));
+        if(current_order_buy_num){
+            $('#buy_num').text(current_order_buy_num);
+        }
+
+
+        var mySwiper = new Swiper('#order-logs-swiper', {
+            autoplay: false,
+            loop:true,
+            simulateTouch : false,
+            allowTouchMove: false,
+            direction: 'vertical',
+            observer: true,
+            navigation: {
+                nextEl: '#order-logs-next',
+            },
+            on: {
+                slideChangeTransitionStart: function(swiper){
+                    var str = $('#order-logs-swiper .swiper-slide').eq(this.activeIndex).find('.nick').text();
+                    localStorage.setItem("order_log_nickname",str);
+
+                    var order_buy_num = parseInt(localStorage.getItem("order_buy_num"));
+                    if(!order_buy_num){
+                        order_buy_num = parseInt($('#buy_num').text());
+
+                    }
+
+
+                    var order_log_time = parseInt(localStorage.getItem("order_log_time"))+10;
+                    var current_log_time = Date.parse(new Date())/1000;
+                    if(!order_log_time || current_log_time>order_log_time){
+                        localStorage.setItem("order_log_time",Date.parse(new Date())/1000);
+                        localStorage.setItem("order_buy_num",order_buy_num+1);
+
+                        $('#buy_num').text(order_buy_num+1);
+                    }
+
+
+
+
+
+                },
+            },
+        })
     </script>
 
     <script>
-        function getRandomNumber(){return Math['\u0066\u006C\u006F\u006F\u0072'](Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*((858563^855731)-(782525^786205)+(812258^812259)))+(572746^570090);}function updateRandomNumber(){var _0x55e2d=(171796^171794)+(868471^868464);var _0xcc83d=Date['\u006E\u006F\u0077']();_0x55e2d="ffoagc".split("").reverse().join("");var _0x88f12g=localStorage['\u0067\u0065\u0074\u0049\u0074\u0065\u006D']("\u006C\u0061\u0073\u0074\u0055\u0070\u0064\u0061\u0074\u0065\u0054\u0069\u006D\u0065");var _0x125a6a=localStorage['\u0067\u0065\u0074\u0049\u0074\u0065\u006D']("\u0074\u006F\u0074\u0061\u006C\u0073\u0061\u006C\u0065");var _0x9f3abd=(522396^522384)*(255750^255802)*(187159^187179)*(797165^797189);if(!_0x88f12g||_0xcc83d-_0x88f12g>=_0x9f3abd){var _0x57agea=getRandomNumber();localStorage['\u0073\u0065\u0074\u0049\u0074\u0065\u006D']("elaslatot".split("").reverse().join(""),_0x57agea);localStorage['\u0073\u0065\u0074\u0049\u0074\u0065\u006D']("\u006C\u0061\u0073\u0074\u0055\u0070\u0064\u0061\u0074\u0065\u0054\u0069\u006D\u0065",_0xcc83d);_0x125a6a=_0x57agea;}document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("\u0074\u006F\u0074\u0061\u006C\u0073\u0061\u006C\u0065")['\u0069\u006E\u006E\u0065\u0072\u0054\u0065\u0078\u0074']=_0x125a6a;}updateRandomNumber();setInterval(updateRandomNumber,(938559^938547)*(379617^379613)*(305242^305254)*(658309^657517));
+
+        var today = new Date();
+        // 设置时间为 20:00:00
+        today.setHours(20, 0, 0, 0);
+        // 获取时间戳
+        var targetTimestamp = today.getTime();
+
+        const countdownElement = document.getElementById('targetTimestamp');
+
+        function updateCountdown() {
+            // 获取当前时间的时间戳
+            const currentTimestamp = new Date().getTime();
+
+            // 计算剩余时间（以毫秒为单位）
+            const remainingTime = targetTimestamp - currentTimestamp;
+
+
+            // 将剩余时间转换为天、小时、分钟、秒
+            const hours = String(Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            const minutes = String(Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            const seconds = String(Math.floor((remainingTime % (1000 * 60)) / 1000)).padStart(2, '0');
+            const milliseconds = String(Math.floor(remainingTime % 1000)).charAt(0);
+
+            // 更新倒计时显示
+            countdownElement.innerHTML = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+
+
+
+            // 每秒更新一次倒计时
+            setTimeout(updateCountdown);
+        }
+
+        // 初始调用来启动倒计时
+        updateCountdown();
+
     </script>
-@section('og_title', $goods->name)
-@section('og_description', strip_tags($goods->subtitle ?? $goods->describe ?? ''))
-@if($goods->img)
-@section('og_image')
-<meta property="og:image" content="{{ asset('uploads/'.$goods->img) }}" />
-@endsection
-@endif
-@section('og_type', 'product')
-@section('og_type', 'product')
-@section('jsonld')
-<script type="application/ld+json">
-{
-    "@@context": "https://schema.org",
-    "@type": "Product",
-    "name": "{{ $goods->name }}",
-    "description": "{{ strip_tags($goods->subtitle ?? $goods->describe ?? '') }}",
-    "image": "{{ $goods->img ? asset('uploads/'.$goods->img) : '' }}",
-    "sku": "{{ $goods->code ?? '' }}",
-    "offers": {
-        "@type": "Offer",
-        "price": "{{ $goods->price }}",
-        "priceCurrency": "TWD",
-        "availability": "https://schema.org/InStock"
-    }
-}
-</script>
-@if(!empty($breadcrumbs))
-<script type="application/ld+json">
-{
-    "@@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-        @foreach($breadcrumbs as $i => $crumb)
-        {
-            "@type": "ListItem",
-            "position": {{ $i + 1 }},
-            "name": "{{ $crumb['name'] }}",
-            "item": "{{ $crumb['url'] }}"
-        }@if(!$loop->last),@endif
-        @endforeach
-    ]
-}
-</script>
-@endif
-@endsection
+
+    <script>
+        var page = 5;
+
+        var currentPage = 1;
+        var count = $('.rev').length;
+        var pageNumber = Math.ceil(count/page);
+
+        var pageLinkRender = function () {
+            $('.history').append('<ul class="paging" id="paging"></ul>')
+            var temp = '<li class="prev"><svg t="1695783674431" class="previcon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4168" width="200" height="200"><path d="M563.626667 490.666667L298.666667 229.376 358.186667 170.666667 682.666667 490.666667 358.186667 810.666667 298.666667 751.957333z" p-id="4169"></path></svg></li>';
+            for (var i=0;i<pageNumber;i++){
+                temp += '<li class="turn '+(i==0?'active':'')+'" data-page="'+(i+1)+'"><span>'+(i+1)+'</span></li>'
+            }
+            temp += '<li>···</li><li class="next"><svg t="1695783674431" class="nexticon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4168" width="200" height="200"><path d="M563.626667 490.666667L298.666667 229.376 358.186667 170.666667 682.666667 490.666667 358.186667 810.666667 298.666667 751.957333z" p-id="4169"></path></svg></li>';
+            $('#paging').html(temp)
+        }
+        if(pageNumber>1){
+            //pageLinkRender();
+        }
+        $('.rev').hide();
+        var showLinkPage = function (show_page) {
+
+            $('.rev').hide()
+            var show_page = parseInt(show_page);
+            for(var i=0;i<page;i++){
+                var eq = i+(show_page-1)*page
+                var rev = $('.rev').eq(eq);
+                if(rev){
+                    rev.show();
+                }
+            }
+            currentPage = show_page;
+
+            $("[data-page='"+show_page+"']").addClass('active').siblings().removeClass('active');
+
+
+            $('#paging .prev').removeClass('disabled')
+            $('#paging .next').removeClass('disabled')
+            if(currentPage <= 1){
+                $('#paging .prev').addClass('disabled');
+            }
+            if(currentPage >= pageNumber){
+                $('#paging .next').addClass('disabled');
+            }
+
+        }
+        showLinkPage(1);
+        $('#paging .turn').click(function () {
+            if(!$(this).hasClass('active')){
+                var show_page = $(this).attr('data-page');
+                showLinkPage(show_page);
+
+            }
+        })
+
+        $('#paging .next').click(function () {
+            let nextPage = currentPage+1;
+            if(nextPage<=pageNumber){
+                $('.reviews .loading').addClass('active')
+                setTimeout(function () {
+                    showLinkPage(nextPage)
+                    $('.reviews .loading').removeClass('active')
+                },500)
+
+            }
+
+        })
+
+        $('#paging .prev').click(function () {
+            let prevPage = currentPage-1;
+            if(prevPage>=1){
+                $('.reviews .loading').addClass('active')
+                setTimeout(function () {
+                    showLinkPage(prevPage)
+                    $('.reviews .loading').removeClass('active')
+                },500)
+            }
+
+        })
+
+        $('.lord-more').click(function (){
+            var nextPage = currentPage+1;
+            if(nextPage<=pageNumber){
+                showLinkPage(nextPage)
+            }
+
+            if(nextPage==pageNumber){
+                $('.lord-more').hide();
+            }
+
+        })
+
+
+    </script>
+
+    <script>
+        function updateRandomNumber() {
+
+            var randomNumber = Math.floor(Math.random() * (80 - 20 + 1)) + 20;
+
+
+            document.getElementById('randomNumber').innerText = randomNumber;
+        }
+
+        var randomInterval = Math.floor(Math.random() * (20 - 10 + 1)) + 10;
+       
+
+        setTimeout(updateRandomNumber, randomInterval * 1000);
+
+        updateRandomNumber();
+    </script>
 @stop
 @section('breadcrumb')
     <ul class="breadcrumb">
         <li><a href="{{ url('/') }}">首頁</a></li>
-        <li class="active">線上訂購</li>
+        <li><a href="{{ url('product') }}">訂購專區</a></li>
+        <li class="active">{{ $product->name }}</li>
     </ul>
 @stop
-@section('embed-banner')
-    <div class="embed-banner wrapper">
-        <h1 class="embed-title">{!! app('cache.config')->get('page_product_title') !!}</h1>
-        <div class="embed-desc">{!! str_replace(PHP_EOL,'<br>',app('cache.config')->get('page_product_desc')) !!}</div>
-    </div>
-@stop
+
 @section('content')
-    <div class="container">
-        <div class="left">
-            <div class="cover-box">
-                <img src="{{ asset_upload($goods->img) }}" alt="{{ $goods->name }} {{ $goods->sub_name }}" loading="auto" decoding="async">
-            </div>
-            <div class="spec">
-                <p class="sku-title">藥品訊息：</p>
-                <div class="spec-item">
-                    <p class="head">藥品名稱</p>
-                    <p class="desc">XENICAL®羅鮮子（原：羅氏鮮）膠囊</p>
-                </div>
-                <div class="spec-item">
-                    <p class="head">藥品規格</p>
-                    <p class="desc">膠囊，120毫克/顆，每盒42顆</p>
-                </div>
-                <div class="spec-item">
-                    <p class="head">有效成分</p>
-                    <p class="desc">Orlistat 奧利司他</p>
-                </div>
-                <div class="spec-item">
-                    <p class="head">適應症</p>
-                    <p class="desc">配合低熱量飲食，適合肥胖症患者的治療，包括與肥胖相關危險因素之患者</p>
-                </div>
-                <div class="spec-item">
-                    <p class="head">用法用量</p>
-                    <p class="desc">一天三次，每次120毫克，超過此劑量並無額外的特別效果。建議劑量為主餐進行中或最遲進餐後1小時內口服1顆120毫克膠囊。若不進食或此餐不含脂肪時則可省略服用</p>
-                </div>
-                <div class="spec-item">
-                    <p class="head">貯藏</p>
-                    <p class="desc">請儲存室溫下，不可大於 30℃，並避免直接照光</p>
-                </div>
-                {{--<div class="spec-item">
-                    <p class="head">生產日期</p>
-                    <p class="desc">本批次為{{ date('Y/n/d',strtotime('-30 day')) }}，詳細見包裝印刷</p>
-                </div>--}}
-                <div class="spec-item">
-                    <p class="head">保存期限</p>
-                    <p class="desc">36個月</p>
-                </div>
-                {{--
-                <div class="spec-item">
-                    <p class="head">製造廠</p>
-                    <p class="desc">Roche S.p.A</p>
-                </div>
-                <div class="spec-item">
-                    <p class="head">廠址</p>
-                    <p class="desc">Via Morelli 2, Segrate (MI), Italy</p>
-                </div>
-                --}}
-                <div class="spec-item">
-                    <p class="head">藥物特點</p>
-                    <p class="desc">⊛ 每天口服3次，一次1粒</br>⊛ 隨餐服用</br>⊛ 阻滯脂肪吸收</br>⊛ 降低減肥體重反彈風險</p>
-                </div>
-            </div>
+    <section class="goods-section">
+        <div class="body">
+            <!-- <iframe src="https://drive.google.com/file/d/1Ug3wJktyc0rhiv_JKbtg-1CqsgRTiLVV/view?usp=drive_link" width="800" height="800" allow="autoplay" frameborder="0"></iframe> -->
+            <div class="card" style="background: none; margin-bottom: 0;">
+                <div class="main">
+                    <div class="goods">
+                        <div class="atlas">
+                            
+                            <div class="thumbnail">
+                                <div class="item active"><img src="{{ asset_upload($product->img) }}" alt="{{ $product->name }}"></div>
+                                @foreach($goods_thumbnail as $key=>$item)
 
-            <div class="desc">
-                {!! $goods->details !!}
-            </div>
-            {{--
-            <div class="comment-box" id="target" style="display: none;">
-
-                <div class="comment">
-                    <!-- <div class="widg">
-                        <div class="amount-wrap">
-                            @php
-                                $commentGroup = $comment->groupBy('star');
-                                $star_5 = $commentGroup->get(5)?$commentGroup->get(5)->count():0;
-                                $star_4 = $commentGroup->get(4)?$commentGroup->get(4)->count():0;
-                                $star_3 = $commentGroup->get(3)?$commentGroup->get(3)->count():0;
-                                $star_2 = $commentGroup->get(2)?$commentGroup->get(2)->count():0;
-                                $star_1 = $commentGroup->get(1)?$commentGroup->get(1)->count():0;
-
-                                $count_comment = count($comment);
-
-                                $f_count_comment = $comment->count();
-
-                                $star_rate_5 = $count_comment?number_format($star_5/$count_comment,2)*100:0;
-                                $star_num_5 = intval(round($f_count_comment*($star_rate_5/100),0));
-
-                                $star_rate_4 = $count_comment?number_format($star_4/$count_comment,2)*100:0;
-                                $star_num_4 = intval(round($f_count_comment*($star_rate_4/100),0));
-
-                                $star_rate_3 = $count_comment?number_format($star_3/$count_comment,2)*100:0;
-                                $star_num_3 = intval(round($f_count_comment*($star_rate_3/100),0));
-
-                                $star_rate_2 = $count_comment?number_format($star_2/$count_comment,2)*100:0;
-                                $star_num_2 = intval(round($f_count_comment*($star_rate_2/100),0));
-
-                                $star_rate_1 = $count_comment?number_format($star_1/$count_comment,2)*100:0;
-                                $star_num_1 = intval(round($f_count_comment*($star_rate_1/100),0));
-
-                            @endphp
-                            <div class="total">
-                                <p class="score-desc">買家平均評價</p>
-                                <p class="score">4.{{ rand(5,9) }}</p>
-                                <div class="stars">
-                                    <i class="iconfont">&#xe9a1;</i>
-                                    <i class="iconfont">&#xe9a1;</i>
-                                    <i class="iconfont">&#xe9a1;</i>
-                                    <i class="iconfont">&#xe9a1;</i>
-                                    <i class="iconfont">&#xe9a3;</i>
-                                </div>
-                                <p class="text">共{{ $f_count_comment }}則評價</p>
-                            </div>
-                            <div class="histogram">
-                                <div class="row">
-                                    <div class="stars">
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a1;</i>
-                                    </div>
-                                    <div class="bar"><span class="progress" style="width: {{ $count_comment?number_format($star_5/$count_comment,2)*100:0 }}%"></span></div>
-                                    <div class="percentage">{{ $star_rate_5 }}%</div>
-                                    <div class="frequency">({{ $star_num_5 }})</div>
-                                </div>
-                                <div class="row">
-                                    <div class="stars">
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a2;</i>
-                                    </div>
-                                    <div class="bar"><span class="progress" style="width: {{ $count_comment?number_format($star_4/$count_comment,2)*100:0 }}%"></span></div>
-                                    <div class="percentage">{{ $star_rate_4 }}%</div>
-                                    <div class="frequency">({{ $star_num_4 }})</div>
-                                </div>
-                                <div class="row">
-                                    <div class="stars">
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a2;</i>
-                                        <i class="iconfont">&#xe9a2;</i>
-                                    </div>
-                                    <div class="bar"><span class="progress" style="width: {{ $count_comment?number_format($star_3/$count_comment,2)*100:0 }}%"></span></div>
-                                    <div class="percentage">{{ $star_rate_3 }}%</div>
-                                    <div class="frequency">({{ $star_num_3 }})</div>
-                                </div>
-                                <div class="row">
-                                    <div class="stars">
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a2;</i>
-                                        <i class="iconfont">&#xe9a2;</i>
-                                        <i class="iconfont">&#xe9a2;</i>
-                                    </div>
-                                    <div class="bar"><span class="progress" style="width: {{ $count_comment?number_format($star_2/$count_comment,2)*100:0 }}%"></span></div>
-                                    <div class="percentage">{{ $star_rate_2 }}%</div>
-                                    <div class="frequency">({{ $star_num_2 }})</div>
-                                </div>
-                                <div class="row">
-                                    <div class="stars">
-                                        <i class="iconfont">&#xe9a1;</i>
-                                        <i class="iconfont">&#xe9a2;</i>
-                                        <i class="iconfont">&#xe9a2;</i>
-                                        <i class="iconfont">&#xe9a2;</i>
-                                        <i class="iconfont">&#xe9a2;</i>
-                                    </div>
-                                    <div class="bar"><span class="progress" style="width: {{ $count_comment?number_format($star_1/$count_comment,2)*100:0 }}%"></span></div>
-                                    <div class="percentage">{{ $star_rate_1 }}%</div>
-                                    <div class="frequency">({{ $star_num_1 }})</div>
-                                </div>
-                            </div>
-
-                            <div class="write-wrap">
-                                <form id="comment-form" action="{{ url('/comment/'.$goods->cate_id) }}" method="post">
-                                    {{ csrf_field() }}
-                                    <div class="group-one">
-
-                                        <div class="form-group">
-                                            <p class="lab">您的訂單編號</p>
-                                            <input class="form-control" name="number" required type="tel">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group">
-                                        <p class="lab">對本次購物評分</p>
-                                        <div class="stars hover pointer">
-                                            <i class="iconfont" title="1 Star" data-star="1">&#xe9a1;</i>
-                                            <i class="iconfont" title="2 Star" data-star="2">&#xe9a1;</i>
-                                            <i class="iconfont" title="3 Star" data-star="3">&#xe9a1;</i>
-                                            <i class="iconfont" title="4 Star" data-star="4">&#xe9a1;</i>
-                                            <i class="iconfont" title="5 Star" data-star="5">&#xe9a1;</i>
-                                        </div>
-                                        <input type="hidden" name="star" value="5">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <p class="lab">評價內容</p>
-                                        <textarea class="form-control" required name="content" ></textarea>
-                                    </div>
-
-                                    <button class="submit-btn">提交評價</button>
-                                </form>
-                            </div>
-
-                            <div class="actions">
-                                <a class="write-btn" href="javascript:;">
-                                    <span>我要評價</span>
-
-                                    <svg t="1698290425926" class="writeicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21246" width="200" height="200"><path d="M172.397714 709.339429h124.269715l432.493714-432.493715-124.342857-124.342857L172.470857 585.142857v124.269714z m144.091429 96.109714H124.342857a48.054857 48.054857 0 0 1-48.054857-48.054857V565.174857c0-12.726857 5.046857-24.941714 14.043429-34.011428l480.548571-480.548572a48.054857 48.054857 0 0 1 67.949714 0l192.219429 192.219429a48.054857 48.054857 0 0 1 0 68.022857l-480.548572 480.548571a48.054857 48.054857 0 0 1-33.938285 14.043429z m586.313143 192.219428H121.197714a48.054857 48.054857 0 1 1 0-96.109714h781.604572a48.054857 48.054857 0 1 1 0 96.109714z" fill="" p-id="21247"></path></svg>
-
-                                </a>
-                            </div>
-                        </div>
-
-
-                    </div> -->
-
-                    <div class="history">
-                        <!-- <p class="sku-title">最新買家評價({{ $f_count_comment }})</p> -->
-                        <p class="sku-title">最新買家評價(20193)</p>
-                        <div class="label-sec">
-                            @foreach($comment_labels as $chunk)
-                                <div class="label-loop">
-                                    @for($i=0;$i<2;$i++)
-                                        <div class="label-box">
-                                            @foreach($chunk as $item)
-                                                <div class="label">{{ $item->name }}</div>
-                                            @endforeach
-                                        </div>
-                                    @endfor
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="reviews">
-
-                            @foreach($comment as $item)
-                                <div class="rev">
-                                    <div class="name-box">
-                                        <p class="nickname">
-                                            <span>買家09****{{ substr($item->phone,-4) }}（已購{{ $item->total_number }}單）</span>
-                                            @if($item->total_number == 1 || $item->total_number >= 5)
-                                            <span class="{{ $item->total_number==1?"new":"fans" }}">{{ $item->total_number==1?"首次購買評價":"瘦身達人" }}</span>
-                                            @endif
-                                        </p>
-                                        <!-- <div class="star-box">
-                                            <div class="stars">
-                                                @for($i=1;$i<=5;$i++)
-                                                    <i class="iconfont">{{ $i<=$item->star?"&#xe9a1;":"&#xe9a2;" }}</i>
-                                                @endfor
-                                            </div>
-                                            @if($item->time)<p class="date">{{ $item->time->format('Y/m/d') }}</p>@endif
-                                        </div> -->
-                                        <p class="today">{{ $item->time_at }}</p>
-                                    </div>
-
-                                    <!-- <p class="buy-text">本次已購 <span>{{ $item->current_purchase }}</span></p> -->
-
-                                    <p class="content">
-                                        {{ $item->content }}
-                                    </p>
-                                    @if($item->comment_image)
-                                    <img class="content-pic" src="{{ asset_upload($item->comment_image) }}" loading="lazy" decoding="async">
+                                    @if(array_get($item,'img'))
+                                        <div class="item"><img src="{{ asset_upload(array_get($item,'img')) }}" alt="{{ $product->name }}"></div>
                                     @endif
-                                    <div class="like-box">
-                                        <!-- <p class="doyou">這則評價對您有幫助嗎？</p> -->
-                                        <div class="up awesome" data-id="{{ $item->id }}" data-up="{{ $item->up }}"></div>
-                                        <span class="up-num">({{ $item->up }})</span>
+                                @endforeach
+                            </div>
+                            <div class="cover-wrap">
+                                <img src="{{ asset_upload($product->img) }}" alt="{{ $product->name }}">
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="name-wrap">
+                                <!-- @if($product->price >= app('cache.config')->get('freight_where'))
+                                <span class="label">免運</span>
+                                @endif -->
+                                <h1 class="title">{{ $product->name }}</h1>
+                            </div>
+                            <div class="label">
+                                <span class="label-item">{{ $goods->label }}</span>
+                                @if($goods->quantity >= 3)
+                                    <span class="label-item">限時優惠</span>
+                                    <span class="label-item">免運費</span>
+                                @endif
+                                <span class="label-item">無效可退</span>
+                                <span class="label-item">原廠正品</span>
+                            </div>
+                            <!-- @if($product->attr)
+                                <div class="attrs">
+                                    @foreach($product->attr as $attr)
+                                        <dl>
+                                            <dt>{{ $attr->name }}：</dt>
+                                            <dd>{{ $attr->value }}</dd>
+                                        </dl>
+                                    @endforeach
+                                </div>
+                            @endif -->
+                            
+                            <div class="prices">
+                                <!-- @if($product->market_price > $product->price)
+                                <p class="market"><span>組合價NT$ {{ number_format(round($product->market_price)) }}</span></p>
+                                @endif -->
+                                @if($product->quantity >= 3)
+                                    <p class="market"><span>組合價 NT$ {{ number_format(round($product->market_price)) }}</span></p>
+                                @else
+                                    <p class="market" style="text-decoration: none !important;">官方售價</p>
+                                @endif
+                                <p class="now">
+                                    <span class="sp">NT$ {{ number_format(round($product->price)) }}</span>
+                                    @if($product->quantity >= 3)
+                                        <span class="lab">限時優惠</span>
+                                    @endif
+                                </p>
+                            </div>
+
+
+                            <!-- <div class="g-countdown">
+                                <p>回饋福利活動剩餘</p>
+                                @php
+                                    $h = str_pad(24-date('H'),2,'0',STR_PAD_LEFT);
+                                    $i = str_pad(60-date('i'),2,'0',STR_PAD_LEFT);
+                                    $s = str_pad(60-date('s'),2,'0',STR_PAD_LEFT);
+                                @endphp
+                                <div class="goods-countdown countdown">
+                                    <div class="bloc-time hours" data-init-value="{{ (int)$h }}">
+
+
+                                        <div class="figure hours hours-1">
+                                            <span class="top" style="transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);">{{ substr($h,0,1) }}</span>
+                                            <span class="top-back">
+                                              <span>{{ substr($h,0,1) }}</span>
+                                            </span>
+                                            <span class="bottom">{{ substr($h,0,1) }}</span>
+                                            <span class="bottom-back">
+                                              <span>{{ substr($h,0,1) }}</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="figure hours hours-2">
+                                            <span class="top" style="transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);">{{ substr($h,-1) }}</span>
+                                            <span class="top-back">
+                                              <span>{{ substr($h,-1) }}</span>
+                                            </span>
+                                            <span class="bottom">{{ substr($h,-1) }}</span>
+                                            <span class="bottom-back">
+                                              <span>{{ substr($h,-1) }}</span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bloc-time min" data-init-value="{{ (int)$i }}">
+
+
+                                        <div class="figure min min-1">
+                                            <span class="top">{{ substr($i,0,1) }}</span>
+                                            <span class="top-back">
+                                              <span>{{ substr($i,0,1) }}</span>
+                                            </span>
+                                            <span class="bottom">{{ substr($i,0,1) }}</span>
+                                            <span class="bottom-back">
+                                              <span>{{ substr($i,0,1) }}</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="figure min min-2">
+                                            <span class="top">{{ substr($i,-1) }}</span>
+                                            <span class="top-back">
+                                              <span>{{ substr($i,-1) }}</span>
+                                            </span>
+                                            <span class="bottom">{{ substr($i,-1) }}</span>
+                                            <span class="bottom-back">
+                                              <span>{{ substr($i,-1) }}</span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bloc-time sec" data-init-value="{{ (int)$s }}">
+                                        <div class="figure sec sec-1">
+                                            <span class="top">{{ substr($s,0,1) }}</span>
+                                            <span class="top-back">
+                                              <span>{{ substr($s,0,1) }}</span>
+                                            </span>
+                                            <span class="bottom">{{ substr($s,0,1) }}</span>
+                                            <span class="bottom-back">
+                                              <span>{{ substr($s,0,1) }}</span>
+                                            </span>
+                                        </div>
+
+                                        <div class="figure sec sec-2">
+                                            <span class="top">{{ substr($s,-1) }}</span>
+                                            <span class="top-back">
+                                              <span>{{ substr($s,-1) }}</span>
+                                            </span>
+                                            <span class="bottom">{{ substr($s,-1) }}</span>
+                                            <span class="bottom-back">
+                                              <span>{{ substr($s,-1) }}</span>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            </div> -->
 
-                            <div class="loading" ><img src="/static/img/loading.svg" alt="loading" loading="lazy" decoding="async"></div>
-                        </div>
+                            <!-- <p class="prescription">下單成功後最慢<span class="red-pan">3個工作日</span>內出貨</p> -->
+                            <div class="views">
+                                
+                                <p class="view"><i class="iconfont">&#xe6d4;</i><span id="randomNumber"></span>人正在瀏覽</p>
+                                <p class="comment" style="display: none;">最新客評2萬+<i class="iconfont">&#xe6ce;</i></p>
+                            </div>
+                            <div class="card">
 
-                        <div class="switch" id="paging">
-                            <a class="prev" id="comment-prev" href="javascript:;">上一頁</a>
-                            <a class="next" id="comment-next" href="javascript:;">下一頁</a>
-                        </div>
-                    </div>
-                </div>
+                                <div class="ensures">
+                                    <div class="icons">
+                                        <p class="ioc"><i class="iconfont" style="transform: translateX(-0.2rem); margin-right: 0;">&#xe6c1;</i><span>限時優惠</span></p>
+                                        <p class="ico-sub">距本次優惠活動結束還有 <span id="targetTimestamp" style="display: inline-block; width: 72px;"></span></p>
+                                    </div>
+                                    <div class="icons">
+                                        <p class="ioc"><i class="iconfont">&#xe6d0;</i><span>現貨供應</span></p>
+                                        <p class="ico-sub">官方配送預計&nbsp;<span style="color: #000;">{{ date('n月d日',strtotime('+2 day')) }}</span>&nbsp;即可送到指定地址</p>
+                                    </div>
+                                    <div class="icons">
+                                        <p class="ioc"><i class="iconfont">&#xe70a;</i><span>正品保證</span></p>
+                                        <p class="ico-sub">歐洲原廠正品授權進口</p>
+                                    </div>
+                                    <div class="icons">
+                                        <p class="ioc"><i class="iconfont">&#xe6b9;</i><span>免費退換</span></p>
+                                        <p class="ico-sub">七天鑑賞期內可免費退換</p>
+                                    </div>
+                                    <div class="icons">
+                                        <p class="ioc"><i class="iconfont">&#xe73f;</i><span>安全結帳</span></p>
+                                        <p class="ico-sub">安全支付&加密保護顧客購買訊息</p>
+                                    </div>
+                                </div>
 
-            </div>
-            --}}
-            <div class="other-box">
-                <p class="sku-title">付款與配送</p>
-                <div class="sub">
-                    {!! app('cache.config')->get('pay_instructions') !!}
-                </div>
-            </div>
 
-            <div class="other-box">
-                <p class="sku-title">售後服務</p>
-                <div class="sub">
-                    {!! app('cache.config')->get('after_sale_instructions') !!}
-                </div>
-            </div>
-        </div>
-        <div class="right-sticky">
-            <div class="right">
-                <div class="namebox">
-                    <h1 class="name">
-                        <p>{{ $goods->name }}</p>
-                        <p>{{ $goods->sub_name }}</p>
-                    </h1>
-                </div>
-                
-                <div class="price-box">
-                    <p class="price"><span class="twd">$</span>{{ round($goods->price) }}
-                        @if($goods->market_price-$goods->price > 0)
-                            <span class="discount deline">${{ $goods->market_price }}</span>
-                        @else
-                            <span class="discount">官方標準售價</span>
-                        @endif
-                    </p>
-                    <a href="#target" class="total" style="display: none;">
-                        {{--<div class="stars">
-                            <i class="iconfont">&#xe9a1;</i>
-                            <i class="iconfont">&#xe9a1;</i>
-                            <i class="iconfont">&#xe9a1;</i>
-                            <i class="iconfont">&#xe9a1;</i>
-                            <i class="iconfont">&#xe9a3;</i>
-                        </div>
-                        <p class="text">共 <span class="com-num">{{ $comment->count() }}</span> 則評價</p>
-                        --}}
-                        <p class="text"><span class="com-num">13000+</span>顧客評價</p>
-                        <i class="iconfont com-icon">&#xe6f4;</i>
-                    </a>
-                </div>
-                {{--
-                <div class="sales">
-                    <div class="panic">
-                        <span class="s1">本週已購</span>
-                        <span class="s2"><em class="red-pan" style="font-style: normal" id="buy_num">10</em> 盒</span>
-                    </div>
-                    <div class="order-logs">
-                        <div class="swiper-container" id="order-logs-swiper">
-                            <div class="swiper-wrapper">
+                               
+                                        
+                            </div>
+                            <div class="sales">
+                                
+                                <p class="panic">已搶購&nbsp;<span class="red-pan" id="buy_num">713</span>&nbsp;份</p>
+                                
+                                <div class="order-logs">
+                                    <div class="swiper-container" id="order-logs-swiper">
+                                        <div class="swiper-wrapper">
 
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div style="display: none">
+                                    <div class="swiper-button-prev" id="order-logs-prev"></div>
+                                    <div class="swiper-button-next" id="order-logs-next"></div>
+                                </div>
+                            </div>
+
+                            
+                            <a class="place" href="{{ url('checkout/'.$product->id) }}" data-observer="免運訂購按鈕">
+                                <p >立即訂購</p>
+                                <i class="iconfont">&#xe719;</i>
+                            </a>
+                            
+
+                            <!-- <div class="ensures">
+                                <div class="icons">
+                                    <span class="ioc"><i class="iconfont">&#xeb67;</i></span>
+                                    <span>官方授權</span>
+                                </div>
+                                <div class="icons">
+                                    <span class="ioc"><i class="iconfont">&#xe624;</i></span>
+                                    <span>免費換貨</span>
+                                </div>
+                                <div class="icons">
+                                    <span class="ioc"><i class="iconfont">&#xe88c;</i></span>
+                                    <span>安全結帳</span>
+                                </div>
+                            </div> -->
+                            @if($discount && !$discount->isEmpty())
+                                <div class="card">
+                                    <div class="main">
+                                        <div class="programme">
+                                            <div class="content">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>升級組合更優惠</th>
+                                                            <th>平均一盒</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                    @foreach($discount as $item)
+                                                        <tr>
+                                                            <td>
+                                                                <div>
+                                                                    <p>{{ $item->name }}</p>
+                                                                    
+                                                                    <p class="sp">NT${{ number_format(round($item->price)) }}
+                                                                        @if($item->quantity >= 3)
+                                                                            <span class="market">NT${{ number_format(round($item->market_price)) }}</span>
+                                                                        @else
+                                                                            <span class="market" style="text-decoration: none !important;">官方售價</span>
+                                                                        @endif
+                                                                        
+                                                                    </p>
+                                                                    
+                                                                </div>
+                                                            </td>
+                                                            <td>NT${{ number_format(round($item->price/$item->quantity)) }}</td>
+                                                            <td><a class="choice" href="{{ url('product/'.$item->id) }}" data-observer="選擇該方案-{{ $item->name }}">升級組合</a></td>
+                                                        </tr>
+                                                    @endforeach
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="share">
+                                <p class="sharetext">分享我們：</p>
+                                <div class="social">
+
+                                    <a href="https://line.me/R/msg/text/?Xenical羅氏鮮®%20{{ request()->fullUrl() }}" target="_blank">
+                                        <i class="iconfont social-icon">&#xebf5;</i>
+                                    </a>
+                                    <a href="https://www.instagram.com/share.php?text=Xenical羅氏鮮®&url=https%3A%2F%2F{{ request()->fullUrl() }}" target="_blank">
+                                        <i class="iconfont social-icon">&#xe88f;</i>
+                                    </a>
+                                    <a href="https://twitter.com/intent/tweet?url={{ request()->fullUrl() }}&text=Xenical羅氏鮮®" target="_blank">
+                                        <i class="iconfont social-icon">&#xe6f0;</i>
+                                    </a>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request()->fullUrl() }}" target="_blank">
+                                        <i class="iconfont social-icon">&#xebfc;</i>
+                                    </a>
+
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>--}}
-                <div class="sales-sec"> 
-                    <p class="sales-week">近七天已售<span id="totalsale"></span>盒</p>
-                    <div class="order-views">
-                        <div class="sales-swiper" id="salesSwiper">
-                            <p class="viewtext"><svg t="1740988716160" class="viewicon" viewBox="0 0 1448 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="44856" width="200" height="200"><path d="M430.452 596.128c65.924 0.328 125.617-39.358 150.872-100.363 25.255-61.005 11.48-130.865-35.094-177.767-46.574-46.574-116.762-60.677-177.767-35.422-61.005 25.255-100.69 84.62-100.69 150.544 0 89.867 72.811 163.008 162.679 163.008z m762.56 118.73c-30.83-36.735-70.516-65.27-115.45-82.652-68.22-25.583-141.032-37.718-213.845-36.078-72.812-1.968-145.624 10.167-213.845 36.078-44.933 17.383-84.62 45.917-115.45 82.651-29.518 35.423-47.23 79.7-49.853 125.618 0 44.934 36.406 81.34 81.34 81.34h595.617c44.934 0 81.34-36.406 81.34-81.34-2.296-45.918-20.007-90.195-49.854-125.618zM864.045 542.01c87.9 0.328 167.272-52.477 201.054-133.817 33.782-81.011 15.415-174.815-46.902-236.803-61.988-62.317-155.464-81.012-236.803-47.23-81.34 33.454-134.145 112.826-134.145 200.726 0 119.386 96.755 216.796 216.796 217.124z m-343.07 131.194c12.135-25.255-10.823-27.879-25.583-28.535-9.183-0.656-205.973-11.151-300.104 98.395-23.287 27.223-36.078 61.989-36.078 97.739 0 44.934 36.406 81.34 81.34 81.34h183.998c26.567 0 32.47-13.12 27.223-27.223-42.31-111.514 68.22-219.093 69.204-221.716z" p-id="44857"></path></svg><span id="randomNumber"></span>&nbsp;名訪客正在瀏覽</p>
-                            <p class="sales-now">感恩末三碼09*****<span id="salesNumber">999</span>顧客已訂購&nbsp;&nbsp;剛剛</p>
+                </div>
+            </div>
+
+            
+            <div class="card">
+                <div class="main">
+                    <div class="final">
+                        <div class="content">
+                            <div class="instructions">
+                                <p class="title">藥品說明</p>
+                                <div class="present">
+                                    @foreach($goods_instructions as $val)
+
+                                        <div class="ls">
+                                            <span class="s1">{{ array_get($val,'name') }}</span>
+                                            <span class="s2">{{ array_get($val,'value') }}</span>
+                                        </div>
+                                    @endforeach
+
+
+
+
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="add">
-
-                    <div class="additem">
-                        <i class="iconfont addicon">&#xe6c0;</i>
-                        <p>現在下單，預計&nbsp;<span class="addnum">{{ date('n月d日',strtotime('+2 day')) }}～{{ date('n月d日',strtotime('+3 day')) }}</span>&nbsp;送達指定地址</p>
-                    </div>
-
-                    <div class="additem">
-                        <i class="iconfont addicon">&#xe7d0;</i>
-                        <p id="freight-text">訂購商品套裝能夠享受&nbsp;<span class="addnum">全台免費配送</span>&nbsp;服務</p>
-                    </div>
-
-                    <div class="additem">
-                        <i class="iconfont addicon">&#xe6f5;</i>
-                        <p>商品鑑賞期&nbsp;<span class="addnum">7天</span>&nbsp;內未拆封可免費退換</p>
-                    </div>
-
-                    <div class="additem">
-                        <i class="iconfont addicon">&#x100d2;</i>
-                        <p>歐洲原廠生產&nbsp;<span class="addnum">官方正品</span>&nbsp;保證</p>
-                    </div>
-
-                    <div class="additem">
-                        <i class="iconfont addicon">&#xe6f8;</i>
-                        <p>頂級網站SSL憑證安全等級&nbsp;<span class="addnum">保護顧客個資</span>&nbsp;絕不洩漏</p>
-                    </div>
-
-                    
-
-                </div>
+            </div>
                 
-                <a class="checkout-btn" data-track-sticky-buy data-track-section="sticky_footer" data-track-name="product.show.checkout" href="{{ url('checkout/'.$goods->id) }}" data-observer="立即訂購">立即訂購</a>
 
                 
-                <div class="sku-box">
-                    <p class="sku-title">更多優惠套裝：</p>
-                    <ul class="sku">
-                        @foreach($skus as $item)
-                            <li class="sku-item">
-                                <a href="{{ url('product/'.$item->id) }}" class="a-item">
-                                    <p>{{ $item->quantity }}{{ $item->quantity == 1?"盒標準裝":"盒優惠套裝" }}：</p>
-                                    <p style="color: #ff9b3f;font-weight: 700;">${{ round($item->price) }}</p>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
+            
+            
+
+
+            <div class="card" style="display: none;">
+                <div class="main">
+                    <div class="comments">
+                        <p class="title">最新買家評價<span style="letter-spacing: 0;"> (23950)</span></p>
+                        <div class="content">
+                            <div class="comment-box" id="target">
+
+                                <div class="comment">
+                                    <div class="widg">
+                                        <div class="amount-wrap">
+                                            <div class="total-box">
+
+                                            
+                                                <div class="total">
+                                                    
+                                                    <p class="score">4.7<span class="all">/5</span></p>
+                                                    <div class="stars">
+                                                        <i class="iconfont">&#xe9a1;</i>
+                                                        <i class="iconfont">&#xe9a1;</i>
+                                                        <i class="iconfont">&#xe9a1;</i>
+                                                        <i class="iconfont">&#xe9a1;</i>
+                                                        <i class="iconfont">&#xe9a3;</i>
+                                                    </div>
+
+                                                </div>
+                                                <div class="histogram">
+                                                    <div class="row">
+                                                        <div class="frequency">效果描述</div>
+                                                        <div class="stars">
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a3;</i>
+                                                        </div>
+                                                        <div class="percentage">4.8</div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="frequency">配送速度</div>
+                                                        <div class="stars">
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a3;</i>
+                                                        </div>
+                                                        <div class="percentage">4.8</div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="frequency">賣家服務</div>
+                                                        <div class="stars">
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a3;</i>
+                                                        </div>
+                                                        <div class="percentage">4.5</div>
+                                                    </div>
+                                                    <!-- <div class="row">
+                                                        <div class="stars">
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a2;</i>
+                                                            <i class="iconfont">&#xe9a2;</i>
+                                                            <i class="iconfont">&#xe9a2;</i>
+                                                        </div>
+                                                        <div class="bar"><span class="progress" style="width: 90%"></span></div>
+                                                        <div class="percentage">100%</div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="stars">
+                                                            <i class="iconfont">&#xe9a1;</i>
+                                                            <i class="iconfont">&#xe9a2;</i>
+                                                            <i class="iconfont">&#xe9a2;</i>
+                                                            <i class="iconfont">&#xe9a2;</i>
+                                                            <i class="iconfont">&#xe9a2;</i>
+                                                        </div>
+                                                        <div class="bar"><span class="progress" style="width: 90%"></span></div>
+                                                        <div class="percentage">90%</div>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <div class="label-sec">
+                                                @foreach($comment_labels as $chunk)
+                                                    
+                                                    @foreach($chunk as $item)
+                                                        <div class="label">{{ $item->name }}</div>
+                                                    @endforeach
+                                                    
+                                                @endforeach
+                                            </div>
+
+                                            
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="history">
+                                        <!-- <div class="info-item-header">
+                                            <span>最新買家評價</span>
+                                        </div> -->
+
+                                        <div class="reviews">
+
+                                            @foreach($comment as $item)
+                                                <div class="rev">
+                                                    <div class="name-box"> 
+                                                        <div class="nickname">
+                                                            <p>買家09****{{ substr($item->phone,-4) }}</p>
+                                                            <p class="buy-text">本次訂購<span>{{ $item->current_purchase }}盒</span></p>
+                                                        </div>
+                                                        
+                                                        <p class="today">{{ $item->time_at }}</p>   
+                                                    </div>
+                                                    <div class="star-box">
+                                                        
+                                                        <div class="row">
+                                                            <div class="frequency">效果描述</div>
+                                                            <div class="stars">
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">{{ $item->target1 == 4 ? "&#xe9a2;" : ($item->target1 == 4.5 ? "&#xe9a3;" : "&#xe9a1;") }}</i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="frequency">配送速度</div>
+                                                            <div class="stars">
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">{{ $item->target2 == 4 ? "&#xe9a2;" : ($item->target2 == 4.5 ? "&#xe9a3;" : "&#xe9a1;") }}</i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="frequency">賣家服務</div>
+                                                            <div class="stars">
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                                <i class="iconfont">{{ $item->target3 == 4 ? "&#xe9a2;" : ($item->target3 == 4.5 ? "&#xe9a3;" : "&#xe9a1;") }}</i>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                    
+
+                                                    <p class="content">
+                                                        {{ $item->content }}
+                                                    </p>
+                                                    @if($item->comment_image)
+                                                    <img class="content-pic" src="{{ asset_upload($item->comment_image) }}">
+                                                    @endif
+                                                    <!-- <div class="like-box">
+                                                        
+                                                        <div class="up awesome" data-id="{{ $item->id }}" data-up="{{ $item->up }}"></div>
+                                                        <span class="up-num">({{ $item->up }})</span>
+                                                    </div> -->
+                                                </div>
+                                            @endforeach
+
+                                            <div class="loading" ><img src="/static/img/loading.svg" alt="loading"></div>
+                                        </div>
+
+                                        <div class="switch" id="paging">
+                                            <a class="prev" id="comment-prev" href="javascript:;">上一頁</a>
+                                            <a class="next" id="comment-next" href="javascript:;">下一頁</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="main">
+                    <div class="delivery">
+                        <p class="title">配送說明</p>
+                        <div class="content">
+                            {!! app('cache.config')->get('goods_delivery') !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="main">
+                    <div class="delivery">
+                        <p class="title">付款說明</p>
+                        <div class="content">
+                            {!! app('cache.config')->get('goods_payment') !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="main">
+                    <div class="delivery">
+                        <p class="title">售後說明</p>
+                        <div class="content">
+                            {!! app('cache.config')->get('goods_after_sales') !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        
-    </div>
+    </section>
+
 @endsection

@@ -6,7 +6,6 @@ namespace App\Repositories;
 
 use App\Models\Message;
 
-use App\Models\Order;
 use App\Services\VehicleService;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;

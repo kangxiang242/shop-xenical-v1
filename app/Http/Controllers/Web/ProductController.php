@@ -3,60 +3,70 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Brand;
 use App\Models\Comment;
 use App\Models\CommentImage;
 use App\Models\CommentLabel;
 use App\Models\Product;
-use App\Models\ProductCate;
-use App\Models\Slide;
-use App\Models\ProductTag;
-use App\Models\Spu;
-use App\Models\Theme;
-use App\Repositories\BrandRepository;
-use App\Repositories\CateRepository;
 use App\Repositories\ProductRepository;
-use App\Repositories\TagRepository;
-use App\Services\CartService;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+
 class ProductController extends Controller
 {
     public function index(ProductRepository $productRepository){
         $products = $productRepository->all();
-        // id=1 固定排在列表最後（其餘順序不變）
-        [$notOne, $one] = $products->partition(function ($p) {
-            return (int) $p->id !== 1;
-        });
-        $products = $notOne->concat($one)->values();
 
-        $slides = Slide::all();
-
-        return template('product.index',compact('products', 'slides'));
+        return template('product.index',compact('products'));
     }
 
 
     public function show($id){
-        $goods = Product::with(['attr', 'faqs'])->where('id',$id)->where('status',1)->first();
+        $product = Product::where('id',$id)->where('status',1)->first();
 
-        if(!$goods){
+        if(!$product){
             abort(404);
         }
 
-        $skus = Product::where('status',1)->where('id','<>',$id)->get();
+        $goods_thumbnail_untreated = app('cache.config')->get('goods_thumbnail');
+        $goods_thumbnail = [];
+        if($goods_thumbnail_untreated){
+            $goods_thumbnail = json_decode($goods_thumbnail_untreated,true);
+        }
 
-        $comment = Comment::where('status',1)->get()->shuffle();
 
-        $comment_images = CommentImage::where('status',0)->get()->shuffle();
+
+        $goods_instructions_untreated = app('cache.config')->get('goods_instructions');
+        $goods_instructions = [];
+        if($goods_instructions_untreated){
+            $goods_instructions = json_decode($goods_instructions_untreated,true);
+        }
+
+        if($product->quantity >= 24){
+            $discount = collect();
+        }else{
+            $discount = Product::where('status',1)->where('quantity','>=',$product->quantity)->orderBy('quantity','asc')->limit(2)->get();
+        }
+
+
+        $comment = Comment::where('status',1)->where('mode',0)->get()->shuffle();
+
+        $comment_images1 = CommentImage::where('status',0)->where('mode',0)->get()->shuffle();
+        $comment_images2 = CommentImage::where('status',0)->where('mode',1)->get()->shuffle();
+
 
         foreach ($comment as $key => $item) {
 
-            if($item->is_comment_image == 1 && !$item->comment_image && $comment_images->isNotEmpty()){
-                $comment_image = $comment_images->pop();
-                $item->comment_image = $comment_image->image;
-                $item->save();
-
+            if($item->is_comment_image == 1 && !$item->comment_image){
+                if($item->mode == 1){
+                    $comment_image = $comment_images2->pop();
+                }else{
+                    $comment_image = $comment_images1->pop();
+                }
+                if($comment_image){
+                    $item->comment_image = $comment_image->image;
+                    $comment_image->status = 1;
+                    $comment_image->save();
+                    $item->save();
+                }
             }
 
 
@@ -79,59 +89,10 @@ class ProductController extends Controller
             }
         }
 
-
-
         $comment_labels = CommentLabel::orderBy('sort')->get();
 
-        $un_product_details_gb = app('cache.config')->get('product_details_gb');
-        $product_details_gb = [];
-        if($un_product_details_gb){
-            $product_details_gb = json_decode($un_product_details_gb,true);
-        }
+        $goods = $product;
 
-        $un_product_details = app('cache.config')->get('product_details');
-        $product_details = [];
-        if($un_product_details){
-            $product_details = json_decode($un_product_details,true);
-        }
-
-        $slides = Slide::all();
-
-        $now = Carbon::now();
-        $showCountdown = $now->between(
-            Carbon::today()->setTime(15, 0, 0),
-            Carbon::today()->setTime(16, 59, 59)
-        );
-
-        // official 版商品詳情視圖使用 $goods->details 輸出藥品訊息區塊；
-        // 本站資料存在 config product_details，轉成 HTML 供新視圖渲染。
-        $detailsHtml = '';
-        if (!empty($product_details)) {
-            $parts = [];
-            foreach ($product_details as $item) {
-                // 與原站視圖一致：desc 允許後台 HTML（原視圖以 {!! !!} 輸出）
-                $parts[] = '<h3>'.($item['title'] ?? '').'</h3>'
-                    .'<p>'.str_replace(PHP_EOL, '<br>', $item['desc'] ?? '').'</p>';
-            }
-            $detailsHtml = implode('', $parts);
-        }
-        $goods->setAttribute('details', $detailsHtml);
-
-        return template('product.show',compact('goods','skus','comment','comment_labels','product_details_gb','product_details','slides','showCountdown'));
-    }
-
-
-    public function commentUp(Request $request){
-        $comment = Comment::find($request->id);
-        if($request->like == 1){
-            $comment->up = $comment->up+1;
-        }else{
-            $comment->up = $comment->up-1;
-        }
-        if($comment->up < 0){
-            $comment->up = 0;
-        }
-
-        $comment->save();
+        return template('product.show',compact('product','goods','goods_thumbnail','goods_instructions','discount','comment_labels','comment'));
     }
 }

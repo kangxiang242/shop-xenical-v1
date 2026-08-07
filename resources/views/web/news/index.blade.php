@@ -8,87 +8,62 @@
 
 @section('script')
     @parent
-    <script src="{{ asset('static/js/jquery.waypoints.min.js') }}?ver={{ config('app.asset_version') }}"></script>
-    <script>
-        $(function(){
-            $('.cardList > li').waypoint(function(){
-                this.element.classList.add('show');
-            },{
-                offset: '70%'
-            });
-        });
-        $(window).scroll(function() {
-            bgEffect()
 
-        });
+@stop
+@section('breadcrumb')
+    <ul class="breadcrumb">
+        <li><a href="{{ url('/') }}">首頁</a></li>
 
-        function bgEffect(){
-            let top = document.scrollingElement.scrollTop; //触发滚动条，记录数值
-            let banner_height = $('.container-bg').height()-60;
-            let opacity = 1-top/banner_height;
-            $('.container-bg').css('opacity',opacity);
-            if(opacity<=0.6){
-                $('.page-title').css('color','rgba(0,0,0,'+top/banner_height+')');
-            }else{
-                $('.page-title').css('color','#fff');
-            }
-
-            if(($(window).scrollTop() + $(window).height()).toFixed(0) == $(document).height()){
-                $('.container-bg').css('opacity',0);
-            }
-
-
-        }
-    </script>
+        <li class="active">瘦身部落格</li>
+    </ul>
 @stop
 
-
 @section('content')
-    @php($newsBg = app('cache.config')->get('page_news_back_img_pc'))
-    @if($newsBg)
-    <div class="container-bg" style="background-image: url('{{ asset_upload($newsBg) }}')">
-    @else
-    <div class="container-bg">
-    @endif
-        <p class="bg-text">{!! app('cache.config')->get('page_news_title') !!}</p>
-        <p class="beat"><i class="iconfont">&#xe784;</i></p>
-    </div>
-    <h1 class="page-title">瘦身專欄</h1>
-    <div class="news-wrap" data-track-section="news.list" data-track-section-view data-track-section-label="文章列表">
-        <ul class="breadcrumb">
-            <li><a href="{{ url('/') }}">首頁</a></li>
-            <li class="active">瘦身專欄</li>
-        </ul>
-        <ul class="cardList vertical">
+    <section class="section">
+        <div class="section-content wrapper">
 
-            @foreach($news as $item)
-                <li class="">
-                    <div class="item ">
-                        @if($item->img)
-                        <div class="Img"><a href="{{ url('news/'.$item->id) }}" data-track-section="news.list" data-track-name="news.list.item" data-observer="文章-{{ $item->title }}"><img src="{{ asset('uploads/'.$item->img) }}" alt="{{ $item->title }}" loading="lazy" decoding="async"></a></div>
-                        @endif
-                        <div class="Txt">
-                            <div class="newsInfoIdxBox">
-                                <div class="newsDateBox">
-                                    <span class="day">{{ $item->release_at->format('d') }}</span>
-                                    <span class="ym">{{ substr($item->release_at->format('Y'),-2) }} {{ $item->release_at->format('M') }}</span>
-                                </div>
-                                <div class="newsTitle">
-                                    <h3><a href="{{ url('news/'.$item->id) }}" data-track-section="news.list" data-track-name="news.list.title" data-observer="文章標題-{{ $item->title }}">{{ $item->title }}</a></h3>
+            <h1 class="page-title">瘦身部落格</h1>
+            <div class="main">
+                <div class="news">
+                    <div class="news-vse">
+                        @foreach($news as $item)
+                            <div class="item">
+                                <div class="img-wrapper"><a href="{{ url('news/'.$item->id) }}"><img src="{{ asset('uploads/'.$item->img) }}" alt="{{ $item->img_alt?:$item->title }}" oncontextmenu="return false;"></a></div>
+                                <div class="info">
+                                    <p class="new-title"><a href="{{ url('news/'.$item->id) }}">{{ $item->title }}</a></p>
+                                    <p class="new-desc">
+                                        {{ \Illuminate\Support\Str::limit($item->brief?$item->brief:strip_tags($item->content),240) }}
+                                    </p>
+                                    <p class="go"><a class="go-btn" href="{{ url('news/'.$item->id) }}">閱讀全文 >></a></p>
                                 </div>
                             </div>
-                            <p class="ellipsis" style="overflow-wrap: break-word;">
-                                {{ \Illuminate\Support\Str::limit($item->brief?$item->brief:strip_tags($item->content),680) }}
-                            </p>
+                        @endforeach
+                    </div>
+                    <div class="page">
+                        {!! $news->links() !!}
+                    </div>
+                </div>
+
+                <div class="popularity">
+                    <div class="popularity-row">
+                        <div class="box-header">
+                            <a class="title" href="javascript:;">最新資訊</a>
+                        </div>
+                        <div class="popularity-product popularity-title-edition">
+
+                            <div class="list">
+                                @foreach($newNews as $item)
+                                    <div class="list-item">
+                                        <a class="main-color-hover" href="{{ url('news/'.$item->id) }}">{{ $item->title }}</a>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                </li>
-            @endforeach
+                </div>
+            </div>
 
-
-        </ul>
-
-        {{ $news->links() }}
-    </div>
+        </div>
+    </section>
 
 @endsection
