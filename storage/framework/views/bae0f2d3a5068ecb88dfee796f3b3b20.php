@@ -1,9 +1,7 @@
-@extends('mobile.layout')
-
-@section('style')
-    @parent
-    <link rel="stylesheet" href="{{ asset('static/mobile/less/index.css') }}?ver={{ config('app.asset_version') }}">
-    <link rel="stylesheet" href="{{ asset('static/swiper4/swiper.min.css') }}?ver={{ config('app.asset_version') }}">
+<?php $__env->startSection('style'); ?>
+    <?php echo \Illuminate\View\Factory::parentPlaceholder('style'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('static/mobile/less/index.css')); ?>?ver=<?php echo e(config('app.asset_version')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('static/swiper4/swiper.min.css')); ?>?ver=<?php echo e(config('app.asset_version')); ?>">
     <style>
         /*.swiper-container {
             height: 100vh;
@@ -175,16 +173,16 @@
         }
 
     </style>
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('script')
-    @parent
-    <script src="{{ asset('static/swiper4/swiper.min.js') }}?ver={{ config('app.asset_version') }}"></script>
-    <script src="{{ asset('static/js/jquery.textAnimation.min.js') }}?ver={{ config('app.asset_version') }}"></script>
-    <script src="{{ asset('static/js/jquery.waypoints.min.js') }}?ver={{ config('app.asset_version') }}"></script>
-    <script src="{{ asset('static/js/jquery.marquee.min.js') }}?ver={{ config('app.asset_version') }}"></script>
-    <script src="{{ asset('static/js/jquery.parallax.js') }}?ver={{ config('app.asset_version') }}"></script>
-    <script src="{{ asset('static/js/countUp.min.js') }}?ver={{ config('app.asset_version') }}"></script>
+<?php $__env->startSection('script'); ?>
+    <?php echo \Illuminate\View\Factory::parentPlaceholder('script'); ?>
+    <script src="<?php echo e(asset('static/swiper4/swiper.min.js')); ?>?ver=<?php echo e(config('app.asset_version')); ?>"></script>
+    <script src="<?php echo e(asset('static/js/jquery.textAnimation.min.js')); ?>?ver=<?php echo e(config('app.asset_version')); ?>"></script>
+    <script src="<?php echo e(asset('static/js/jquery.waypoints.min.js')); ?>?ver=<?php echo e(config('app.asset_version')); ?>"></script>
+    <script src="<?php echo e(asset('static/js/jquery.marquee.min.js')); ?>?ver=<?php echo e(config('app.asset_version')); ?>"></script>
+    <script src="<?php echo e(asset('static/js/jquery.parallax.js')); ?>?ver=<?php echo e(config('app.asset_version')); ?>"></script>
+    <script src="<?php echo e(asset('static/js/countUp.min.js')); ?>?ver=<?php echo e(config('app.asset_version')); ?>"></script>
     <script>
         textAnimation("#text-banner-0 #banner-p1");
         textAnimation("#text-banner-0 #banner-p2");
@@ -542,13 +540,11 @@
         });
     </script>
 
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
-    {{--<div class="right-online-buy">
-        <a href="{{ url('product') }}"><i class="iconfont">&#xe811;</i>線上訂購</a>
-    </div>--}}
+    
     <section class="adv-section" data-track-section="hero" data-track-section-view data-track-section-label="首屏">
         <div class="act-main">
             <div class="video-wrap" style="height: 100vh">
@@ -557,21 +553,21 @@
                         <div class="swiper-slide">
                             <div class="slide-inner" data-bind-text="text-banner-0">
                                 <video style="object-fit:cover" loop="" muted="" width="100%" height="100%" playsinline="" preload="none" poster="/static/video/poster1-m.webp">
-                                    <source src="{{ asset('static/video/m1.mp4') }}" type="video/mp4">
+                                    <source src="<?php echo e(asset('static/video/m1.mp4')); ?>" type="video/mp4">
                                 </video>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="slide-inner" data-bind-text="text-banner-1">
                                 <video style="object-fit:cover" loop="" muted="" width="100%" height="100%" playsinline="" preload="none" poster="/static/video/poster2-m.webp">
-                                    <source src="{{ asset('static/video/m2.mp4') }}" type="video/mp4">
+                                    <source src="<?php echo e(asset('static/video/m2.mp4')); ?>" type="video/mp4">
                                 </video>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="slide-inner" data-bind-text="text-banner-2">
                                 <video style="object-fit:cover"  loop="" muted="" width="100%" height="100%" playsinline="" preload="none" poster="/static/video/poster3-m.webp">
-                                    <source src="{{ asset('static/video/m3.mp4') }}" type="video/mp4">
+                                    <source src="<?php echo e(asset('static/video/m3.mp4')); ?>" type="video/mp4">
                                 </video>
                             </div>
                         </div>
@@ -582,23 +578,23 @@
 
                 <div class="video-slogan">
                     <div class="text-effect" id="text-banner-0">
-                        <p class="p1" id="banner-p1">{{ app('cache.config')->get('home_banner_0_title', '安全減肥') }}</p>
-                        <p class="p2" id="banner-p2">{{ app('cache.config')->get('home_banner_0_title_en', 'Safety') }}&nbsp;</p>
+                        <p class="p1" id="banner-p1"><?php echo e(app('cache.config')->get('home_banner_0_title', '安全減肥')); ?></p>
+                        <p class="p2" id="banner-p2"><?php echo e(app('cache.config')->get('home_banner_0_title_en', 'Safety')); ?>&nbsp;</p>
                         <p class="p3" id="banner-p3">美國FDA、歐盟EMA等權威認證</p>
                         <p class="p3" id="banner-p4">僅作用於腸道、對人體安全</p>
                     </div>
 
                     <div class="text-effect" id="text-banner-1" >
-                        <p class="p1" id="banner-p1">{{ app('cache.config')->get('home_banner_1_title', '有效減肥') }}</p>
-                        <p class="p2" id="banner-p2">{{ app('cache.config')->get('home_banner_1_title_en', 'Effective') }}&nbsp;</p>
+                        <p class="p1" id="banner-p1"><?php echo e(app('cache.config')->get('home_banner_1_title', '有效減肥')); ?></p>
+                        <p class="p2" id="banner-p2"><?php echo e(app('cache.config')->get('home_banner_1_title_en', 'Effective')); ?>&nbsp;</p>
                         <p class="p3" id="banner-p3">歐盟核准上市28年</p>
                         <p class="p3" id="banner-p4">醫師首選口服合法減肥藥</p>
                     </div>
 
                     <div class="text-effect" id="text-banner-2" >
-                        <p class="p1" id="banner-p1">{{ app('cache.config')->get('home_banner_2_title', '健康減肥') }}</p>
-                        <p class="p2" id="banner-p2">{{ app('cache.config')->get('home_banner_2_title_en', 'Healthy') }}&nbsp;</p>
-                        <p class="p3" id="banner-p3">{{ app('cache.config')->get('home_banner_2_desc', '無須斷食動刀，健康排出油脂') }}</p>
+                        <p class="p1" id="banner-p1"><?php echo e(app('cache.config')->get('home_banner_2_title', '健康減肥')); ?></p>
+                        <p class="p2" id="banner-p2"><?php echo e(app('cache.config')->get('home_banner_2_title_en', 'Healthy')); ?>&nbsp;</p>
+                        <p class="p3" id="banner-p3"><?php echo e(app('cache.config')->get('home_banner_2_desc', '無須斷食動刀，健康排出油脂')); ?></p>
                     </div>
                 </div>
 
@@ -609,18 +605,19 @@
                 <div class="progress"></div>
             </div>
             <div class="slogan-wrap">
-                <div class="back-img"><img src="{{ asset('static/img/ellipse.webp') }}" alt="" loading="lazy" decoding="async"></div>
+                <div class="back-img"><img src="<?php echo e(asset('static/img/ellipse.webp')); ?>" alt="" loading="lazy" decoding="async"></div>
                 <p class="text" id="slogan-text"> 妳滿意現在的身材嗎？</p>
             </div>
         </div>
 
         <div class="about-main">
             <div class="head wow animate__animated animate__fadeInUp">
-                <h1 class="title">{!! app('cache.config')->get('home_about_title') !!}</h1>
+                <h1 class="title"><?php echo app('cache.config')->get('home_about_title'); ?></h1>
                 <p class="sub">WHAT IS XENICAL</p>
             </div>
             <div class="text wow animate__animated animate__fadeInUp">
-                {!! app('cache.config')->get('home_about') !!}
+                <?php echo app('cache.config')->get('home_about'); ?>
+
             </div>
             <div class="cumulative wow animate__animated animate__fadeInUp">
                 <p class="p1">銷量超過</p>
@@ -635,14 +632,14 @@
             <p class="sub">FOR WHO</p>
         </div>
         <div class="main wow animate__animated animate__fadeInUp">
-            @foreach($for_people as $item)
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $for_people; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="item">
                     <div class="box">
-                        <img src="{{ asset('uploads/'.($item->img ?? '')) }}" alt="{{ $item->text ?? '' }}" loading="lazy" decoding="async">
+                        <img src="<?php echo e(asset('uploads/'.($item->img ?? ''))); ?>" alt="<?php echo e($item->text ?? ''); ?>" loading="lazy" decoding="async">
                     </div>
-                    <p class="text">{{ $item->text }}</p>
+                    <p class="text"><?php echo e($item->text); ?></p>
                 </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
         </div>
     </section>
 
@@ -661,7 +658,8 @@
                     <span class="min-fat right-more" style="right: 12.3rem;top: 6.2rem;"></span>
                 </div>
                 <div class="introduce wow animate__animated animate__fadeInUp">
-                    {!! app('cache.config')->get('how_to_work_1') !!}
+                    <?php echo app('cache.config')->get('how_to_work_1'); ?>
+
                 </div>
             </div>
 
@@ -670,7 +668,8 @@
                     <span class="max-fat bottom-more" style="bottom: 9.5rem;left: 16rem"></span>
                 </div>
                 <div class="introduce int-2 wow animate__animated animate__fadeInUp">
-                    {!! app('cache.config')->get('how_to_work_2') !!}
+                    <?php echo app('cache.config')->get('how_to_work_2'); ?>
+
                 </div>
             </div>
         </div>
@@ -684,17 +683,7 @@
             <p class="sub">HOW TO BUY</p>
         </div>
         <div class="main">
-            {{--<div class="officina wow animate__animated animate__fadeInUp">
-                <div class="card">
-                    <p class="title">線下通路</p>
-                    <p class="sub">
-                        羅氏鮮已上市全台各大藥局<br>
-                        統一定價NT$1,800<br>
-                        訂購者必須出示醫師處方箋
-                    </p>
-                </div>
-                <div class="drug">藥</div>
-            </div>--}}
+            
 
             <div class="officina wow animate__animated animate__fadeInUp">
                 <div class="card">
@@ -705,35 +694,36 @@
                         訂購組合懶人包可享受超值優惠
                     </p>
                 </div>
-                <div class="shop-back"><img src="{{ asset('static/img/shop2.webp') }}" alt="線上訂購" loading="lazy" decoding="async"></div>
+                <div class="shop-back"><img src="<?php echo e(asset('static/img/shop2.webp')); ?>" alt="線上訂購" loading="lazy" decoding="async"></div>
             </div>
 
             <div class="product wow animate__animated animate__fadeInUp">
                 <div class="card">
-                    @foreach($products as $item)
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="goods">
                         <div class="col">
-                            <p class="title">羅氏鮮{{ $item->sub_name }}</p>
+                            <p class="title">羅氏鮮<?php echo e($item->sub_name); ?></p>
                             <p class="price">
-                                <span class="now">NT${{ number_format(round($item->price)) }}</span>
+                                <span class="now">NT$<?php echo e(number_format(round($item->price))); ?></span>
 
                                 <span class="jetso">
-                                    @if($item->market_price > $item->price)
-                                        優惠${{ $item->market_price - $item->price }}
-                                    @else
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($item->market_price > $item->price): ?>
+                                        優惠$<?php echo e($item->market_price - $item->price); ?>
+
+                                    <?php else: ?>
                                         官方標準售價
-                                    @endif
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </span>
                             </p>
                         </div>
                         <div class="col">
-                            <a class="checkout-btn" href="{{ url('checkout/'.$item->id) }}" data-track-section="product" data-track-name="home.product.checkout" data-observer="立即訂購-{{ $item->name }}">立即訂購</a>
+                            <a class="checkout-btn" href="<?php echo e(url('checkout/'.$item->id)); ?>" data-track-section="product" data-track-name="home.product.checkout" data-observer="立即訂購-<?php echo e($item->name); ?>">立即訂購</a>
                         </div>
                     </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                 </div>
 
-                {{--<a class="more" href="{{ url('product') }}">查看剩下10種優惠組合方案</a>--}}
+                
             </div>
 
         </div>
@@ -745,22 +735,22 @@
             <p class="sub">HOW TO WORK</p>
         </div>
         <div class="main wow animate__animated animate__fadeInUp">
-            @if($trade_show)
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($trade_show): ?>
                 <div class="swiper-container" id="swiper5">
                     <div class="swiper-wrapper">
-                        @foreach(array_values($trade_show) as $key=>$item)
-                            @if($key>5)
-                                @break
-                            @endif
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = array_values($trade_show); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($key>5): ?>
+                                <?php break; ?>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 <div class="swiper-slide word-item">
-                                    <div class="box"><img src="{{ asset_upload($item['img']) }}" alt="{{ $item['text'] }}" loading="lazy" decoding="async"></div>
+                                    <div class="box"><img src="<?php echo e(asset_upload($item['img'])); ?>" alt="<?php echo e($item['text']); ?>" loading="lazy" decoding="async"></div>
                                 </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
 
                     </div>
                 </div>
-            @endif
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
         </div>
     </section>
@@ -771,9 +761,10 @@
         </div>
         <div class="main wow animate__animated animate__fadeInUp">
             <div class="text ">
-                {!! str_replace(PHP_EOL,'<br>',app('cache.config')->get('slim_about')) !!}
+                <?php echo str_replace(PHP_EOL,'<br>',app('cache.config')->get('slim_about')); ?>
+
             </div>
-            <a class="btn" href="{{ url('compute') }}" data-track-section="tdee" data-track-name="home.tdee.btn" data-observer="測試你的數據按鈕">測試一下你的數據</a>
+            <a class="btn" href="<?php echo e(url('compute')); ?>" data-track-section="tdee" data-track-name="home.tdee.btn" data-observer="測試你的數據按鈕">測試一下你的數據</a>
         </div>
     </section>
 
@@ -784,12 +775,12 @@
         </div>
         <div class="main wow animate__animated animate__fadeInUp" id="loopWrap">
             <div class="group">
-                @foreach($trouble as $item)
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $trouble; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="item">
-                        <p class="p1">{{ $item->text }}</p>
-                        <p class="p2"><span class="num">{{ $item->number }}</span><span class="unit">{{ $item->unit }}</span></p>
+                        <p class="p1"><?php echo e($item->text); ?></p>
+                        <p class="p2"><span class="num"><?php echo e($item->number); ?></span><span class="unit"><?php echo e($item->unit); ?></span></p>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
             </div>
         </div>
@@ -802,13 +793,13 @@
         </div>
         <div class="main">
             <div class="question wow animate__animated animate__fadeInUp">
-                @foreach($faqs as $faq)
-                    <div class="item" data-faq-id="{{ $loop->iteration }}">
-                        <p class="q-title">Q：{{ $faq->questions }}<a class="shrink" href="javascript:;"><i class="iconfont">&#xe775;</i></a></p>
-                        <p class="q-desc">{!! $faq->answers !!}</p>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $faqs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $faq): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="item" data-faq-id="<?php echo e($loop->iteration); ?>">
+                        <p class="q-title">Q：<?php echo e($faq->questions); ?><a class="shrink" href="javascript:;"><i class="iconfont">&#xe775;</i></a></p>
+                        <p class="q-desc"><?php echo $faq->answers; ?></p>
 
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
         </div>
     </section>
@@ -816,7 +807,7 @@
     <section class="section epilogue-section" data-track-section="epilogue" data-track-section-view data-track-section-label="底部CTA">
         <div class="main">
             <div class="img-wrap wow animate__animated animate__fadeInUp">
-                <div class="box epilogue-img" style="background-image: url({{ asset('uploads/'.app('cache.config')->get('promote_image')) }})"></div>
+                <div class="box epilogue-img" style="background-image: url(<?php echo e(asset('uploads/'.app('cache.config')->get('promote_image'))); ?>)"></div>
             </div>
 
             <div class="text">
@@ -826,4 +817,6 @@
         </div>
     </section>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('mobile.layout', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /Users/mac-2312-r/workspace/wwwroot/纤体-減肥/shop-xenical/shop-xenical-v1/resources/views/mobile/index.blade.php ENDPATH**/ ?>
