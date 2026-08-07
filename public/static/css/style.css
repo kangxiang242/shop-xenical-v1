@@ -10,7 +10,8 @@ body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, texta
             border-collapse:collapse;
         }
         body {
-            font-family: Microsoft YaHei;
+
+            font-family: MicrosoftYaHeiLight;
         }
 
         ul, li {
@@ -70,3 +71,8 @@ body, div, ul, li, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, form, input, texta
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+
+:root{
+    --main-color:#1e6550;
+    --seize-color:#D8D8D8;
+}

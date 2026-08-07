@@ -3,66 +3,62 @@
   position: relative;
   padding-bottom: 6rem;
 }
-.message-container .fixed-bg {
-  width: 100%;
-  height: 59rem;
-  background-image: url("/static/img/m_check_bg.png");
-  position: relative;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-attachment: fixed;
-}
-.message-container .fixed-bg .mask {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.message-container .fixed-bg .slogan {
-  color: #fff;
-  position: absolute;
-  z-index: 1;
-  top: 20rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 100%;
-  text-align: center;
-  font-size: 2.4rem;
-  padding: 0 3rem;
-  font-weight: 500;
-}
 .message-container .page-main {
   position: relative;
   width: 100%;
   padding-top: 1.4rem;
 }
 .message-container .page-main .page-head {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -7.8rem);
-  color: #fff;
+  color: #000;
 }
 .message-container .page-main .page-head .page-title {
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: 500;
-}
-.message-container .page-main .page-head .radio {
-  width: 5.6rem;
-  height: 5.6rem;
-  border-radius: 50%;
-  border: 0.1rem solid #FFFFFF;
-  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 .message-container .page-main .quick {
   padding: 0 1.5rem;
   margin-bottom: 8rem;
+  /* .fqa{
+                li{
+
+                    margin-bottom: 2rem;
+                    height: 2.1rem;
+                    overflow: hidden;
+                    -moz-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                    -webkit-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                    -o-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                    -ms-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                    transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                    .question{
+                        font-size: 1.4rem;
+                    }
+                    .answers{
+                        font-size: 1.2rem;
+                        color: #999;
+                        padding-left: 2.5rem;
+                        padding-top: .4rem;
+                        opacity: 0;
+                        -moz-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                        -webkit-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                        -o-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                        -ms-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                        transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                    }
+                    &.show{
+                        height: calc(20px + var(--_height));
+                        .answers{
+                            opacity: 1;
+                        }
+
+                    }
+                }
+            } */
 }
 .message-container .page-main .quick .describe {
   text-align: center;
-  border-bottom: 0.1rem solid #D8D8D8;
+  border-bottom: 0.1rem solid #8bb7a9;
   padding-bottom: 2rem;
   margin-bottom: 2rem;
 }
@@ -76,36 +72,42 @@
   font-weight: 100;
   text-align: center;
 }
-.message-container .page-main .quick .fqa li {
-  margin-bottom: 2rem;
-  height: 2.1rem;
-  overflow: hidden;
-  -moz-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-  -webkit-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-  -o-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-  -ms-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-  transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+.message-container .page-main .quick .fqa {
+  margin: 0 auto;
 }
-.message-container .page-main .quick .fqa li .question {
+.message-container .page-main .quick .fqa .item {
+  width: 100%;
+  height: 5rem;
   font-size: 1.4rem;
+  overflow: hidden;
+  /* padding: 0 16px; */
+  position: relative;
+  margin-bottom: 1rem;
+  transition-duration: 0.3s;
+  border-bottom: 1px solid #8bb7a9;
+  cursor: pointer;
 }
-.message-container .page-main .quick .fqa li .answers {
-  font-size: 1.2rem;
-  color: #999;
-  padding-left: 2.5rem;
-  padding-top: 0.4rem;
-  opacity: 0;
-  -moz-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-  -webkit-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-  -o-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-  -ms-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-  transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+.message-container .page-main .quick .fqa .item .q-title {
+  height: 5rem;
+  /* line-height: 5rem; */
+  color: var(--main-color);
+  font-size: 1.4rem;
+  font-weight: 500;
+  width: 85%;
+  text-indent: -2.6rem;
+  padding-left: 2.6rem;
+  display: flex;
+  align-items: center;
 }
-.message-container .page-main .quick .fqa li.show {
-  height: calc(20px + var(--_height));
+.message-container .page-main .quick .fqa .item .q-desc {
+  font-size: 14px;
+  padding: 0 3rem 1rem 2.6rem;
 }
-.message-container .page-main .quick .fqa li.show .answers {
-  opacity: 1;
+.message-container .page-main .quick .fqa .item .q-icon {
+  position: absolute;
+  right: 12px;
+  top: 16px;
+  color: var(--main-color);
 }
 .message-container .page-main .quick .finis {
   font-size: 1.2rem;
@@ -145,11 +147,11 @@
 .message-container .page-main .form-pack .form-group .form-control {
   width: 100%;
   height: 4rem;
-  background-color: #fff;
-  border: 0.1rem solid #979797;
-  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 1.4rem;
   padding: 0 1.5rem;
-  font-family: Microsoft YaHei;
+  border-radius: 0.6rem;
 }
 .message-container .page-main .form-pack .form-group .form-control.captcha_code {
   width: 19rem;
@@ -164,15 +166,16 @@
 .message-container .page-main .form-pack .form-group .form-btn {
   width: 100%;
   height: 4.6rem;
-  background: #C1C1C1;
+  background: #8bb7a9;
   font-size: 1.6rem;
   color: #fff;
   outline: none;
   border: none;
   margin-top: 1rem;
+  border-radius: 0.6rem;
 }
 .message-container .page-main .form-pack .form-group .form-btn.activate-btn {
-  background: #ff9b3e;
+  background: var(--main-color);
 }
 .message-container .foot {
   margin-top: 4.3rem;

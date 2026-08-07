@@ -1,8 +1,9 @@
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
-  font-family: "iconfont"; /* Project id 3122894 */
-  src: url('iconfont.woff2?t=1648890606615') format('woff2'),
-       url('iconfont.woff?t=1648890606615') format('woff'),
-       url('iconfont.ttf?t=1648890606615') format('truetype');
+  font-family: 'iconfont';  /* Project id 3122894 */
+  src: url('//at.alicdn.com/t/c/font_3122894_rbt6lsiz2u.woff2?t=1713239227194') format('woff2'),
+       url('//at.alicdn.com/t/c/font_3122894_rbt6lsiz2u.woff?t=1713239227194') format('woff'),
+       url('//at.alicdn.com/t/c/font_3122894_rbt6lsiz2u.ttf?t=1713239227194') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +12,102 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sanjiao1:before {
+  content: "\e606";
+}
+
+.icon-sanjiaoxia:before {
+  content: "\e644";
+}
+
+.icon-e-juice:before {
+  content: "\e605";
+}
+
+.icon-jiangjia:before {
+  content: "\e6a8";
+}
+
+.icon-SH-fahuoguanli:before {
+  content: "\e648";
+}
+
+.icon-caidan2:before {
+  content: "\e67c";
+}
+
+.icon-shouyetianchong:before {
+  content: "\e692";
+}
+
+.icon-taocandinggou:before {
+  content: "\e719";
+}
+
+.icon-yuedu:before {
+  content: "\e602";
+}
+
+.icon-jieshao:before {
+  content: "\e8ca";
+}
+
+.icon-changjianwenti2:before {
+  content: "\eb90";
+}
+
+.icon-gouwuche-tianchong:before {
+  content: "\e70c";
+}
+
+.icon-mianyunfei:before {
+  content: "\e739";
+}
+
+.icon-Distribution_1:before {
+  content: "\e699";
+}
+
+.icon-zaixiankefucustomerservice:before {
+  content: "\e637";
+}
+
+.icon-yinsiquanzhengce:before {
+  content: "\e6de";
+}
+
+.icon-youhui:before {
+  content: "\e6b8";
+}
+
+.icon-kongyun:before {
+  content: "\e614";
+}
+
+.icon-gou:before {
+  content: "\e651";
+}
+
+.icon-jinggao2:before {
+  content: "\e603";
+}
+
+.icon-fasong:before {
+  content: "\e604";
+}
+
+.icon-kehufuwukefu:before {
+  content: "\e698";
+}
+
+.icon-kefu:before {
+  content: "\e63c";
+}
+
+.icon-kefu1:before {
+  content: "\e650";
 }
 
 .icon-fanhui1:before {

@@ -1,8 +1,4 @@
 
-function xoAreaTrack(step, status) {
-    if (window.XenicalTracker && XenicalTracker.trackAreaLoad) XenicalTracker.trackAreaLoad(step, status || 'ok');
-}
-
 
 var stores_height;
 var is_repeat = 0;
@@ -19,7 +15,7 @@ $('input[name="order_type"]').click(function(){
 
 
 function getOrderTypeVal(){
-     return $('input[name="order_type"]:checked').val();
+    return $('input[name="order_type"]:checked').val();
 }
 
 function SwitchOrderType(){
@@ -29,12 +25,10 @@ function SwitchOrderType(){
         $("#form-address-row").hide();
         $('#form-time-row').hide();
         $("#form-store-row").show();
-        $("#order-type-title").text("配送至門店");
     }else{
         $("#form-address-row").show();
         $('#form-time-row').show();
         $("#form-store-row").hide();
-        $("#order-type-title").text("配送地區");
     }
 }
 
@@ -103,7 +97,7 @@ function getCity(type){
             }
 
             selectOption(result,'city');
-            removeLoadingEffect('#load-1'); xoAreaTrack('city','ok')
+            removeLoadingEffect('#load-1')
         }
     });
 }
@@ -126,7 +120,7 @@ function getCounty(type,city_name){
                 result = JSON.parse(result);
             }
             selectOption(result,'county');
-            removeLoadingEffect('#load-2'); xoAreaTrack('county','ok')
+            removeLoadingEffect('#load-2')
         }
     });
 }
@@ -147,7 +141,7 @@ function getRoad(type,city_name,county_name){
                 result = JSON.parse(result);
             }
             selectOption(result,'street');
-            removeLoadingEffect('#load-3'); xoAreaTrack('street','ok')
+            removeLoadingEffect('#load-3')
         }
     });
 }
@@ -170,8 +164,8 @@ function getShop(type,city_name,county_name,road_name){
             "road_name":road_name,
         },
         success : function(result) {//返回数据根据结果进行相应的处理
-            $('#form-store-row').html(result);
-            $('#form-store-row').show(); xoAreaTrack('shop','ok');
+            $('#show-store-shop').html(result);
+            $('.store-main').show();
         }
     });
 }
@@ -214,7 +208,8 @@ function initialSelectStatus(type){
     }
 
     if(type == 0 || type==4){
-        $('#form-store-row').empty();
+        //$('.store-main').hide();
+        $('.store-main').empty();
     }
 
 }

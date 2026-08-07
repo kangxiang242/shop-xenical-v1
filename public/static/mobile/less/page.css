@@ -1,6 +1,5 @@
 .page-container {
   margin-top: 2rem;
-  padding: 0 1.5rem;
   margin-bottom: 6rem;
 }
 .page-container .page-main {
@@ -15,7 +14,6 @@
 }
 .page-container .page-main .page-body {
   margin-top: 2rem;
-  padding: 0 1.5rem;
 }
 .page-container .page-main .page-body img {
   width: 100%;
@@ -29,3 +27,4 @@
 .page-container .page-main .page-body span {
   font-size: 1.4rem !important;
 }
+/*# sourceMappingURL=page.css.map */

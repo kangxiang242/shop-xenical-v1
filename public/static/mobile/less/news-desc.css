@@ -1,19 +1,10 @@
 .news-show-wrap {
   position: relative;
-  padding: 0 1.5rem;
   padding-bottom: 6rem;
 }
 .news-show-wrap .middle {
   position: relative;
   margin-top: 2rem;
-}
-.news-show-wrap .middle .line {
-  width: 0.1rem;
-  height: 100%;
-  background-color: #ccc;
-  position: absolute;
-  left: 0;
-  top: 0;
 }
 .news-show-wrap .middle .time {
   position: absolute;
@@ -30,11 +21,21 @@
   margin-bottom: 1rem;
 }
 .news-show-wrap .middle .fluid {
-  padding-left: 3.5rem;
   padding-bottom: 2rem;
 }
 .news-show-wrap .middle .fluid .news-title {
   font-size: 2.4rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.news-show-wrap .middle .fluid .date {
+  font-size: 1.2rem;
+  color: #999;
+}
+.news-show-wrap .middle .fluid .line {
+  width: 100%;
+  height: 0.1rem;
+  background-color: #ccc;
   margin-bottom: 2rem;
 }
 .news-show-wrap .middle .fluid .news-content img {
@@ -45,6 +46,7 @@
 }
 .news-show-wrap .article-footer {
   margin-top: 0.6rem;
+  padding: 0 1.5rem;
 }
 .news-show-wrap .article-footer .relatednav {
   display: flex;
@@ -121,4 +123,46 @@
 }
 .news-show-wrap .article-footer .relatednav-next:hover .relatednav-title {
   color: #ff9b3e;
+}
+.news-content img {
+  max-width: 100%;
+}
+.news-content p {
+  font-size: 0.26rem;
+  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
+}
+.news-content h2 {
+  font-size: 0.36rem;
+  margin-bottom: 0.2rem;
+  margin-top: 0.6rem;
+}
+.news-content h3,
+.news-content h4,
+.news-content h5,
+.news-content h6 {
+  font-size: 0.3rem;
+  margin-bottom: 0.1rem;
+  margin-top: 0.4rem;
+}
+.news-content span {
+  color: #fff !important;
+}
+.news-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.28rem;
+  text-align: left;
+  border: 0.01rem solid #ccc;
+  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
+}
+th,
+td {
+  padding: 0.1rem;
+  border: 0.01rem solid #ccc;
+  font-size: 0.24rem;
+}
+th {
+  font-weight: bold;
 }

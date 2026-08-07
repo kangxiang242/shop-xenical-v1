@@ -15,7 +15,7 @@
 }
 .page-main{
     text-align: center;
-    transform: translateY(-80px);
+    /*transform: translateY(-80px);*/
     height: 80px;
     display: flex;
     justify-content: center;
@@ -23,8 +23,9 @@
     transition-duration: .3s;
     .page-title{
         font-weight: 500;
-        color:#fff;
+        color:#000;
         font-size: 32px;
+
     }
 }
 
@@ -43,7 +44,7 @@
             width: 520px;
         }
         .head{
-            border-bottom: 1px solid #D8D8D8;
+            border-bottom: 1px solid #8bb7a9;
             padding-bottom: 20px;
             margin-bottom: 20px;
             .title{
@@ -55,38 +56,36 @@
             }
         }
         .body{
-            .fqa{
-                font-size: 16px;
-                li{
-                    margin-bottom: 20px;
-                    height: 21px;
+            .question{
+                margin: 0 auto;
+                .item {
+                    width: 100%;
+                    height: 50px;
+                    font-size: 14px;
                     overflow: hidden;
-                    -moz-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-                    -webkit-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-                    -o-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-                    -ms-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-                    transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-                    .question{
+                    /* padding: 0 16px; */
+                    position: relative;
+                    margin-bottom: 10px;
+                    transition-duration: .3s;
+                    border-bottom: 1px solid #8bb7a9;
+                    cursor: pointer;
+                    .q-title {
+                        height: 50px;
+                        line-height: 50px;
+                        color: var(--main-color);
                         font-size: 16px;
+                        font-weight: 500;
                     }
-                    .answers{
-                        padding-top: 8px;
+                    .q-desc {
                         font-size: 14px;
-                        color: #999;
-                        padding-left: 30px;
-                        opacity: 0;
-                        -moz-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-                        -webkit-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-                        -o-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-                        -ms-transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
-                        transition: all 0.3s cubic-bezier(0.1, 0, 0, 1);
+                        padding: 0 50px 10px 30px;
                     }
-                    &.show{
-                        height: calc(20px + var(--_height));
-                        .answers{
-                            opacity: 1;
-                        }
-
+                    .q-icon {
+    
+                        position: absolute;
+                        right: 12px;
+                        top: 16px;
+                        color: var(--main-color);
                     }
                 }
             }
@@ -103,10 +102,11 @@
                     .form-control{
                         width: 440px;
                         height: 40px;
-                        border: 1px solid #979797;
+                        border: none;
                         flex-shrink: 0;
                         padding: 0 26px;
-                        background-color: transparent;
+                        border-radius: 6px;
+                        background-color: rgba(255, 255, 255, 0.7);
                     }
                     .form-textarea{
                         height: 123px;
@@ -115,13 +115,14 @@
                     .form-btn{
                         width: 100%;
                         height: 46px;
-                        background: #C1C1C1;
+                        background: #8bb7a9;
                         border: none;
                         color: #fff;
                         font-size: 16px;
+                        border-radius: 6px;
                     }
                     .activate-btn{
-                        background: #ff9b3e;
+                        background: var(--main-color);
                         color: #fff;
                     }
                 }
