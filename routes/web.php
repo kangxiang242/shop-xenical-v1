@@ -28,8 +28,10 @@ Route::get('/sitemap.xml', [ApiController::class, 'sitemap']);
 Route::post('/message/send', [CustomerController::class, 'send'])->middleware('throttle:30,1');
 Route::post('/observer/store', [ObserverController::class, 'store']);
 
-// Admin login routes (POST login handled by Admin\LoginController)
+// Admin login routes (GET/POST login handled by Admin\LoginController, overrides Filament default)
 Route::prefix(env('ADMIN_PATH', 'ami3-17drt4-6ne634russ'))->group(function () {
+    Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'showLoginForm'])
+        ->name('filament.' . env('ADMIN_PATH', 'ami3-17drt4-6ne634russ') . '.auth.login');
     Route::post('/login', [\App\Http\Controllers\Admin\LoginController::class, 'login'])
         ->name('admin.login.submit');
     Route::post('/logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])
