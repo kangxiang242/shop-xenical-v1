@@ -272,7 +272,7 @@
 
 
 @section('banner')
-    @if($layout['banners'] && !$layout['banners']->isEmpty())
+    @if(isset($layout['banners']) && $layout['banners'] && !$layout['banners']->isEmpty())
         <section class="banner-section">
             <div class="banner-main">
                 @foreach($layout['banners'] as $key=>$item)
