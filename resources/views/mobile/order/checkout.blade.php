@@ -271,7 +271,7 @@
                         <span class="tag">姓名</span>
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control" name="phone" pattern="[0-9]*" placeholder="收貨人電話">
+                        <input type="tel" class="form-control" name="phone" pattern="^09\d{8}$" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')" title="請輸入09開頭的10位數字" placeholder="0912345678">
                         <span class="tag">電話</span>
                     </div>
                     <div class="form-group">

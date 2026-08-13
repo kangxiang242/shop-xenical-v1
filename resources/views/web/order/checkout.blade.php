@@ -226,7 +226,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="input-text">
-                                        <input type="text" class="form-input" name="phone" placeholder="">
+                                        <input type="tel" class="form-input" name="phone" placeholder="" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')" pattern="^09\d{8}$" title="請輸入09開頭的10位數字">
                                         <span class="label">電話</span>
                                     </div>
                                 </div>
