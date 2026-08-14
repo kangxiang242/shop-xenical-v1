@@ -39,13 +39,6 @@ Route::domain(env('ADMIN_ROUTE_DOMAIN'))->group(function () {
         ->name('filament.' . env('ADMIN_PATH', 'ami3-17drt4-6ne634russ') . '.auth.logout');
 });
 
-// 2. www 路径访问兼容
-Route::prefix(env('ADMIN_PATH', 'ami3-17drt4-6ne634russ'))->group(function () {
-    Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'showLoginForm'])
-        ->name('admin.login.show');
-    Route::post('/login', [\App\Http\Controllers\Admin\LoginController::class, 'login'])
-        ->name('admin.login.submit.path');
-});
 
 // Frontend routes with device redirect
 Route::middleware(['redirect.device'])->group(function () {
